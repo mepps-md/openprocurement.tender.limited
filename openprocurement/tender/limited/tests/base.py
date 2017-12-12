@@ -5,6 +5,8 @@ from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
 from openprocurement.api.tests.base import test_tender_data as base_data
 from openprocurement.api.tests.base import BaseTenderWebTest as BaseBaseTenderWebTest
+from openprocurement.api.tests.base import test_organization
+
 
 now = datetime.now()
 test_tender_data = base_data.copy()
