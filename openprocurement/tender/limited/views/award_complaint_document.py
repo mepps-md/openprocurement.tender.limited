@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 from openprocurement.api.utils import opresource
-from openprocurement.tender.openua.views.award_complaint_document import TenderUaAwardComplaintDocumentResource
-from openprocurement.tender.openua.views.complaint_document import STATUS4ROLE
+
+# XXX Negotiation procedures are not implemented yet
+# from openprocurement.tender.openua.views.award_complaint_document import TenderUaAwardComplaintDocumentResource
+# from openprocurement.tender.openua.views.complaint_document import STATUS4ROLE
+
+# XXX dirty hack =)
+from openprocurement.api.views.award_complaint_document import TenderAwardComplaintDocumentResource as TenderUaAwardComplaintDocumentResource
 
 
 @opresource(name='Tender negotiation Award Complaint Documents',

@@ -13,8 +13,11 @@ from openprocurement.api.validation import (
     validate_patch_award_data,
     validate_award_data,
 )
-from openprocurement.tender.openua.utils import calculate_business_date
-from openprocurement.tender.openua.models import calculate_normalized_date
+
+# XXX: disabled to run without openua dependency while Negotiation not
+# implemented
+# from openprocurement.tender.openua.utils import calculate_business_date
+# from openprocurement.tender.openua.models import calculate_normalized_date
 
 
 @opresource(name='Tender Limited Awards',

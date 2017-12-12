@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from openprocurement.tender.openua.views.lot import TenderUaLotResource as TenderLotResource
+# XXX Negotiation procedures are not implemented yet
+# from openprocurement.tender.openua.views.lot import TenderUaLotResource as TenderLotResource
+
+# XXX dirty hack =)
+from openprocurement.api.views.lot import TenderLotResource
 
 from openprocurement.api.utils import (
     save_tender,

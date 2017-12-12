@@ -10,7 +10,7 @@ from openprocurement.api.models import (
     plain_role, view_role, create_role, edit_role, enquiries_role, listing_role,
     Administrator_role, schematics_default_role, schematics_embedded_role,
     chronograph_role, chronograph_view_role, draft_role, SANDBOX_MODE,
-    embedded_lot_role, ListType, default_lot_role, validate_lots_uniq,
+    embedded_lot_role, default_lot_role, validate_lots_uniq,
 )
 from openprocurement.api.models import (
     IsoDateTimeType, Document, Organization, SchematicsDocument,
@@ -24,9 +24,20 @@ from openprocurement.api.models import Contract as BaseContract
 from openprocurement.api.models import Value as BaseValue
 from openprocurement.api.models import Unit as BaseUnit
 from openprocurement.api.models import ProcuringEntity as BaseProcuringEntity
-from openprocurement.tender.openua.models import Complaint as BaseComplaint
-from openprocurement.tender.openua.models import Item
-from openprocurement.tender.openua.models import Tender as OpenUATender
+
+try:
+    # XXX aboveThreshold junk. not enabled for mepps, should be adapted to mepps
+    # belowthreshold
+    from openprocurement.tender.openua.models import Complaint as BaseComplaint
+    from openprocurement.tender.openua.models import Item
+    from openprocurement.tender.openua.models import Tender as OpenUATender
+except ImportError:
+    # use models from belowThreshold just in case Negotiation procedures are not
+    # enabled yet
+    from openprocurement.api.models import Complaint as BaseComplaint
+    from openprocurement.api.models import Item
+    from openprocurement.api.models import Tender as OpenUATender
+
 
 
 class Value(BaseValue):
@@ -249,10 +260,10 @@ class Tender(SchematicsDocument, Model):
     if SANDBOX_MODE:
         procurementMethodDetails = StringType()
 
-    create_accreditation = '13'
+    create_accreditation = 1
     edit_accreditation = 2
     procuring_entity_kinds = ['general', 'special', 'defense', 'other']
-    block_complaint_status = OpenUATender.block_complaint_status
+    block_complaint_status = OpenUATender.block_complaint_status  # TODO: move to negotiation models
 
     __parent__ = None
     __name__ = ''
