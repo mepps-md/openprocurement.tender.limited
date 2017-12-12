@@ -81,19 +81,3 @@ class TenderResource(BaseTenderResource):
         self.LOGGER.info('Updated tender {}'.format(tender.id),
                          extra=context_unpack(self.request, {'MESSAGE_ID': 'tender_patch'}))
         return {'data': tender.serialize(tender.status)}
-
-
-@opresource(name='TenderLimitedNegotiation',
-            path='/tenders/{tender_id}',
-            procurementMethodType='negotiation',
-            description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#tender for more info")
-class TenderNegotioationResource(TenderResource):
-    """ Resource handler for Negotiation Tender """
-
-
-@opresource(name='TenderLimitedNegotiationQuick',
-            path='/tenders/{tender_id}',
-            procurementMethodType='negotiation.quick',
-            description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#tender for more info")
-class TenderNegotioationQuickResource(TenderNegotioationResource):
-    """ Resource handler for Negotiation Quick Tender """

@@ -21,9 +21,8 @@ from openprocurement.api.models import Cancellation as BaseCancellation
 from openprocurement.api.models import ITender
 from openprocurement.api.models import Contract as BaseContract
 from openprocurement.api.models import ProcuringEntity as BaseProcuringEntity
-from openprocurement.tender.openua.models import Complaint as BaseComplaint
-from openprocurement.tender.openua.models import Item
-from openprocurement.tender.openua.models import Tender as OpenUATender
+from openprocurement.api.models import Item
+from openprocurement.api.models import Complaint as BaseComplaint
 
 
 class Complaint(BaseComplaint):
@@ -169,7 +168,6 @@ class Tender(SchematicsDocument, Model):
     create_accreditation = 1
     edit_accreditation = 2
     procuring_entity_kinds = ['general', 'special', 'defense', 'other']
-    block_complaint_status = OpenUATender.block_complaint_status
 
     __parent__ = None
     __name__ = ''
@@ -229,46 +227,3 @@ class Tender(SchematicsDocument, Model):
         return self
 
 ReportingTender = Tender
-
-
-class Award(ReportingAward):
-    class Options:
-        roles = {
-            'create': award_create_role,
-            'edit': award_edit_role,
-        }
-
-
-class Contract(BaseContract):
-    items = ListType(ModelType(Item))
-
-@implementer(ITender)
-class Tender(ReportingTender):
-    """ Negotiation """
-    awards = ListType(ModelType(Award), default=list())
-    contracts = ListType(ModelType(Contract), default=list())
-    cause = StringType(choices=['artContestIP', 'noCompetition', 'twiceUnsuccessful',
-                                'additionalPurchase', 'additionalConstruction', 'stateLegalServices'],
-                       required=True)
-    causeDescription = StringType(required=True, min_length=1)
-    causeDescription_en = StringType(min_length=1)
-    causeDescription_ru = StringType(min_length=1)
-    procurementMethodType = StringType(default="negotiation")
-    create_accreditation = 3
-    edit_accreditation = 4
-    procuring_entity_kinds = ['general', 'special', 'defense']
-
-NegotiationTender = Tender
-
-
-@implementer(ITender)
-class Tender(NegotiationTender):
-    """ Negotiation """
-    cause = StringType(choices=['quick', 'artContestIP', 'noCompetition', 'twiceUnsuccessful',
-                                'additionalPurchase', 'additionalConstruction', 'stateLegalServices'], required=False)
-    procurementMethodType = StringType(default="negotiation.quick")
-    create_accreditation = 3
-    edit_accreditation = 4
-    procuring_entity_kinds = ['general', 'special', 'defense']
-
-NegotiationQuickTender = Tender

@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-import webtest
-from copy import deepcopy
-from datetime import datetime, timedelta
+from datetime import datetime
 from openprocurement.api.models import SANDBOX_MODE
 from openprocurement.api.utils import apply_data_patch
 from openprocurement.api.tests.base import test_tender_data as base_data
 from openprocurement.api.tests.base import BaseTenderWebTest as BaseBaseTenderWebTest
-from openprocurement.api.tests.base import test_organization
 
 now = datetime.now()
 test_tender_data = base_data.copy()
@@ -20,18 +17,6 @@ test_tender_data['procuringEntity']["kind"] = "general"
 if SANDBOX_MODE:
     test_tender_data['procurementMethodDetails'] = 'quick, accelerator=1440'
 
-test_tender_negotiation_data = deepcopy(test_tender_data)
-test_tender_negotiation_data['procurementMethodType'] = "negotiation"
-test_tender_negotiation_data['cause'] = "twiceUnsuccessful"
-test_tender_negotiation_data['causeDescription'] = "chupacabra"
-if SANDBOX_MODE:
-    test_tender_negotiation_data['procurementMethodDetails'] = 'quick, accelerator=1440'
-
-test_tender_negotiation_quick_data = deepcopy(test_tender_data)
-test_tender_negotiation_quick_data['procurementMethodType'] = "negotiation.quick"
-test_tender_negotiation_quick_data['causeDescription'] = "chupacabra"
-if SANDBOX_MODE:
-    test_tender_negotiation_quick_data['procurementMethodDetails'] = 'quick, accelerator=1440'
 
 
 class BaseTenderWebTest(BaseBaseTenderWebTest):

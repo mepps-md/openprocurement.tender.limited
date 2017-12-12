@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openprocurement.api.models import get_now, timedelta
+from openprocurement.api.models import get_now
 from openprocurement.api.utils import (
     apply_patch,
     save_tender,
@@ -87,79 +87,3 @@ class TenderAwardContractResource(BaseTenderAwardContractResource):
             self.LOGGER.info('Updated tender contract {}'.format(self.request.context.id),
                              extra=context_unpack(self.request, {'MESSAGE_ID': 'tender_contract_patch'}))
             return {'data': self.request.context.serialize()}
-
-
-@opresource(name='Tender Negotiation Contracts',
-            collection_path='/tenders/{tender_id}/contracts',
-            procurementMethodType='negotiation',
-            path='/tenders/{tender_id}/contracts/{contract_id}',
-            description="Tender contracts")
-class TenderNegotiationAwardContractResource(TenderAwardContractResource):
-    """ Tender Negotiation Award Contract Resource """
-    @json_view(content_type="application/json", permission='edit_tender', validators=(validate_patch_contract_data,))
-    def patch(self):
-        """Update of contract
-        """
-        if self.request.validated['tender_status'] not in ['active']:
-            self.request.errors.add('body', 'data', 'Can\'t update contract in current ({}) tender status'.format(self.request.validated['tender_status']))
-            self.request.errors.status = 403
-            return
-        if self.request.context.status == 'cancelled':
-            self.request.errors.add('body', 'data', 'Can\'t update contract in current ({}) status'.format(self.request.context.status))
-            self.request.errors.status = 403
-            return
-
-        data = self.request.validated['data']
-        if self.request.context.status != 'active' and 'status' in data and data['status'] == 'active':
-            tender = self.request.validated['tender']
-            award = [a for a in tender.awards if a.id == self.request.context.awardID][0]
-            stand_still_end = award.complaintPeriod.endDate
-            if stand_still_end > get_now():
-                self.request.errors.add('body', 'data', 'Can\'t sign contract before stand-still period end ({})'.format(stand_still_end.isoformat()))
-                self.request.errors.status = 403
-                return
-            if any([
-                i.status in tender.block_complaint_status
-                for a in tender.awards
-                for i in a.complaints
-            ]):
-                self.request.errors.add('body', 'data', 'Can\'t sign contract before reviewing all complaints')
-                self.request.errors.status = 403
-                return
-
-        if data['value']:
-            for ro_attr in ('valueAddedTaxIncluded', 'currency'):
-                if data['value'][ro_attr] != getattr(self.context.value, ro_attr):
-                    self.request.errors.add('body', 'data', 'Can\'t update {} for contract value'.format(ro_attr))
-                    self.request.errors.status = 403
-                    return
-
-            award = [a for a in self.request.validated['tender'].awards if a.id == self.request.context.awardID][0]
-            if data['value']['amount'] > award.value.amount:
-                self.request.errors.add('body', 'data', 'Value amount should be less or equal to awarded amount ({})'.format(award.value.amount))
-                self.request.errors.status = 403
-                return
-
-        contract_status = self.request.context.status
-        apply_patch(self.request, save=False, src=self.request.context.serialize())
-        self.request.context.date = get_now()
-        if contract_status != self.request.context.status and contract_status != 'pending' and self.request.context.status != 'active':
-            self.request.errors.add('body', 'data', 'Can\'t update contract status')
-            self.request.errors.status = 403
-            return
-
-        if self.request.context.status == 'active' and not self.request.context.dateSigned:
-            self.request.context.dateSigned = get_now()
-        check_tender_status(self.request)
-        if save_tender(self.request):
-            self.LOGGER.info('Updated tender contract {}'.format(self.request.context.id),
-                             extra=context_unpack(self.request, {'MESSAGE_ID': 'tender_contract_patch'}))
-            return {'data': self.request.context.serialize()}
-
-@opresource(name='Tender Negotiation Quick Contracts',
-            collection_path='/tenders/{tender_id}/contracts',
-            procurementMethodType='negotiation.quick',
-            path='/tenders/{tender_id}/contracts/{contract_id}',
-            description="Tender contracts")
-class TenderNegotiationQuickAwardContractResource(TenderNegotiationAwardContractResource):
-    """ Tender Negotiation Quick Award Contract Resource """

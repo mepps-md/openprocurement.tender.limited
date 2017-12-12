@@ -99,21 +99,3 @@ class TenderAwardDocumentResource(APIResource):
             self.LOGGER.info('Updated tender award document {}'.format(self.request.context.id),
                              extra=context_unpack(self.request, {'MESSAGE_ID': 'tender_award_document_patch'}))
             return {'data': self.request.context.serialize("view")}
-
-
-@opresource(name='Tender Negotiation Award Documents',
-            collection_path='/tenders/{tender_id}/awards/{award_id}/documents',
-            path='/tenders/{tender_id}/awards/{award_id}/documents/{document_id}',
-            procurementMethodType='negotiation',
-            description="Tender award documents")
-class TenderNegotiationAwardDocumentResource(TenderAwardDocumentResource):
-    """ Tender Negotiation Award Documents Resource """
-
-
-@opresource(name='Tender Negotiation Quick Award Documents',
-            collection_path='/tenders/{tender_id}/awards/{award_id}/documents',
-            path='/tenders/{tender_id}/awards/{award_id}/documents/{document_id}',
-            procurementMethodType='negotiation.quick',
-            description="Tender award documents")
-class TenderNegotiationQuickAwardDocumentResource(TenderNegotiationAwardDocumentResource):
-    """ Tender Negotiation Quick Award Documents Resource """
