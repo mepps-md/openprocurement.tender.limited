@@ -5,6 +5,8 @@ from openprocurement.tender.limited.tests.base import (
     BaseTenderContentWebTest, test_tender_data, test_tender_negotiation_data,
     test_tender_negotiation_quick_data, test_lots, test_organization)
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderCancellationResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_data
@@ -289,6 +291,7 @@ class TenderCancellationResourceTest(BaseTenderContentWebTest):
                           }])
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationCancellationResourceTest(TenderCancellationResourceTest):
     initial_data = test_tender_negotiation_data
 
@@ -307,6 +310,7 @@ class TenderNegotiationCancellationResourceTest(TenderCancellationResourceTest):
                           u'name': u'relatedLot'}])
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickCancellationResourceTest(TenderNegotiationCancellationResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -569,14 +573,17 @@ class TenderCancellationDocumentResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationCancellationDocumentResourceTest(TenderCancellationDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickCancellationDocumentResourceTest(TenderNegotiationCancellationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLotsCancellationResourceTest(BaseTenderContentWebTest):
     initial_lots = 2 * test_lots
     initial_data = test_tender_negotiation_data
@@ -847,6 +854,7 @@ class TenderNegotiationLotsCancellationResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can add cancellation only in active lot status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickLotsCancellationResourceTest(TenderNegotiationLotsCancellationResourceTest):
     initial_data = test_tender_negotiation_quick_data
 

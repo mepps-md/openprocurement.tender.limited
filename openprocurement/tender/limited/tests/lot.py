@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
+import unittest
+
 from openprocurement.tender.limited.tests.base import (
     BaseTenderContentWebTest, test_tender_negotiation_data, test_lots, test_organization,
     test_tender_negotiation_quick_data)
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
 
+
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationResourceTest(BaseTenderContentWebTest):
     initial_status = 'active'
     initial_data = test_tender_negotiation_data
@@ -876,6 +881,7 @@ class TenderLotNegotiationResourceTest(BaseTenderContentWebTest):
                          "Can't update lot when it has 'pending' cancellation.")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationQuickResourceTest(TenderLotNegotiationResourceTest):
 
     initial_data = test_tender_negotiation_quick_data

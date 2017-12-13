@@ -5,6 +5,8 @@ from openprocurement.tender.limited.tests.base import (
     BaseTenderContentWebTest, test_tender_data, test_tender_negotiation_data,
     test_tender_negotiation_quick_data)
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderDocumentResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_data
@@ -343,10 +345,12 @@ class TenderDocumentResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationDocumentResourceTest(TenderDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickDocumentResourceTest(TenderNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -619,10 +623,12 @@ class TenderDocumentWithDSResourceTest(TenderDocumentResourceTest):
         self.assertEqual(response.json['errors'][0]["description"], "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationDocumentWithDSResourceTest(TenderDocumentWithDSResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickDocumentWithDSResourceTest(TenderDocumentWithDSResourceTest):
     initial_data = test_tender_negotiation_quick_data
 

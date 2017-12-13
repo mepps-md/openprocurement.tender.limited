@@ -6,6 +6,8 @@ from openprocurement.tender.limited.tests.base import (
     test_tender_negotiation_quick_data, test_organization, test_lots,
     test_tender_negotiation_data_2items, test_tender_negotiation_quick_data_2items)
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderAwardResourceTest(BaseTenderContentWebTest):
     initial_status = 'active'
@@ -523,6 +525,7 @@ class TenderAwardComplaintResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.status, '404 Not Found')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardResourceTest(TenderAwardResourceTest):
     initial_data = test_tender_negotiation_data
 
@@ -614,6 +617,7 @@ class TenderNegotiationAwardResourceTest(TenderAwardResourceTest):
                          "Can't create new award on lot while any (pending) award exists")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLotAwardResourceTest(TenderAwardResourceTest):
     initial_data = test_tender_negotiation_data
 
@@ -1260,10 +1264,12 @@ class TenderNegotiationLotAwardResourceTest(TenderAwardResourceTest):
                          "Can't update award while cancellation for corresponding lot exists")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardResourceTest(TenderNegotiationAwardResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data
 
@@ -1739,6 +1745,7 @@ class TenderNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['data'][0]['status'], 'cancelled')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationAwardComplaintResourceTest(TenderNegotiationAwardComplaintResourceTest):
 
     def test_create_tender_award_complaints(self):
@@ -1929,6 +1936,7 @@ class TenderLotNegotiationAwardComplaintResourceTest(TenderNegotiationAwardCompl
         self.assertEqual(response.json['data'][0]['status'], 'cancelled')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data_2items
 
@@ -2253,10 +2261,12 @@ class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['data'][0]['status'], 'pending')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationQuickAwardComplaintResourceTest(Tender2LotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data_2items
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data_2items
 
@@ -2413,18 +2423,22 @@ class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.json['data']['lotID'], self.second_lot['id'])
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationQuickAwardComplaintResourceTest(Tender2LotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data_2items
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardComplaintResourceTest(TenderNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationQuickAwardComplaintResourceTest(TenderLotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardComplaintDocumentResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data
 
@@ -2811,6 +2825,7 @@ class TenderNegotiationAwardComplaintDocumentResourceTest(BaseTenderContentWebTe
                          "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardComplaintDocumentResourceTest(TenderNegotiationAwardComplaintDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -3116,14 +3131,17 @@ class TenderAwardDocumentResourceTest(BaseTenderContentWebTest):
                          "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderAwardNegotiationDocumentResourceTest(TenderAwardDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderAwardNegotiationQuickDocumentResourceTest(TenderAwardNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotAwardNegotiationDocumentResourceTest(TenderAwardNegotiationDocumentResourceTest):
 
     def setUp(self):
@@ -3145,6 +3163,7 @@ class TenderLotAwardNegotiationDocumentResourceTest(TenderAwardNegotiationDocume
         self.award_id = award['id']
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotAwardNegotiationQuickDocumentResourceTest(TenderLotAwardNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 

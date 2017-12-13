@@ -10,6 +10,8 @@ from openprocurement.tender.limited.tests.base import (
     BaseTenderContentWebTest, test_tender_data, test_tender_negotiation_data,
     test_tender_negotiation_quick_data, test_organization, test_lots)
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderContractResourceTest(BaseTenderContentWebTest):
     initial_status = 'active'
@@ -433,6 +435,7 @@ class TenderContractResourceTest(BaseTenderContentWebTest):
         self.assertNotEqual(contract['awardID'], old_award_id)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationContractResourceTest(TenderContractResourceTest):
     initial_data = test_tender_negotiation_data
     stand_still_period_days = 10
@@ -691,6 +694,7 @@ class TenderNegotiationContractResourceTest(TenderContractResourceTest):
                          [item['id'] for item in tender['items']])
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLotContractResourceTest(TenderNegotiationContractResourceTest):
     initial_data = test_tender_negotiation_data
     stand_still_period_days = 10
@@ -791,6 +795,7 @@ class TenderNegotiationLotContractResourceTest(TenderNegotiationContractResource
         self.assertEqual(response.json['errors'][0]["description"], "Can\'t update contract while cancellation for corresponding lot exists", )
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLot2ContractResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data
     stand_still_period_days = 10
@@ -952,16 +957,19 @@ class TenderNegotiationLot2ContractResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.status, '403 Forbidden')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickContractResourceTest(TenderNegotiationContractResourceTest):
     initial_data = test_tender_negotiation_quick_data
     stand_still_period_days = 5
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickLotContractResourceTest(TenderNegotiationLotContractResourceTest):
     initial_data = test_tender_negotiation_quick_data
     stand_still_period_days = 5
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAccelerationTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_quick_data
     stand_still_period_days = 5
@@ -1000,6 +1008,7 @@ class TenderNegotiationQuickAccelerationTest(BaseTenderContentWebTest):
         self.assertEqual(response.status, '200 OK')
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickLotAccelerationTest(TenderNegotiationQuickAccelerationTest):
     initial_data = test_tender_negotiation_quick_data
     stand_still_period_days = 5
@@ -1036,6 +1045,7 @@ class TenderNegotiationQuickLotAccelerationTest(TenderNegotiationQuickAccelerati
             self.tender_id, self.award_id, self.tender_token), {"data": {"status": "active"}})
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAccelerationTest(TenderNegotiationQuickAccelerationTest):
     stand_still_period_days = 10
     time_sleep_in_sec = 6
@@ -1366,10 +1376,12 @@ class TenderContractDocumentResourceTest(BaseTenderContentWebTest):
                          "Can't update document in current (complete) tender status")
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderContractNegotiationDocumentResourceTest(TenderContractDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderContractNegotiationLotDocumentResourceTest(TenderContractDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
@@ -1403,10 +1415,12 @@ class TenderContractNegotiationLotDocumentResourceTest(TenderContractDocumentRes
             self.tender_id, self.award_id, self.tender_token), {"data": {"status": "active"}})
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderContractNegotiationQuickDocumentResourceTest(TenderContractNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderContractNegotiationQuickLotDocumentResourceTest(TenderContractNegotiationLotDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
