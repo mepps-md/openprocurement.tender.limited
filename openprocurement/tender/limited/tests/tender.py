@@ -492,6 +492,16 @@ class TenderResourceTest(BaseTenderWebTest):
                 u'Please use a mapping for this field or Value instance instead of unicode.'], u'location': u'body', u'name': u'value'}
         ])
 
+        test_tender_data['value']['valueAddedTaxIncluded'] = True
+        response = self.app.post_json(request_path, {'data': test_tender_data}, status=422)
+        self.assertEqual(response.status, '422 Unprocessable Entity')
+        self.assertEqual(response.content_type, 'application/json')
+        self.assertEqual(response.json['status'], 'error')
+        self.assertEqual(response.json['errors'], [
+            {u'description': [u'Currently, only procedures with VAT excluded are supported'], u'location': u'body', u'name': u'value'}
+        ])
+        test_tender_data['value']['valueAddedTaxIncluded'] = False
+
         response = self.app.post_json(request_path, {'data': {'procurementMethod': 'invalid_value'}}, status=422)
         self.assertEqual(response.status, '422 Unprocessable Entity')
         self.assertEqual(response.content_type, 'application/json')

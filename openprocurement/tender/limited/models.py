@@ -299,6 +299,10 @@ class Tender(SchematicsDocument, Model):
         if self.mode and self.mode == 'test' and self.procurementMethodDetails and self.procurementMethodDetails != '':
             raise ValidationError(u"procurementMethodDetails should be used with mode test")
 
+    def validate_value(self, data, value):
+        if value.valueAddedTaxIncluded is not False:
+            raise ValidationError(u"Currently, only procedures with VAT excluded are supported")
+
     def __repr__(self):
         return '<%s:%r@%r>' % (type(self).__name__, self.id, self.rev)
 
