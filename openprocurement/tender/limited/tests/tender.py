@@ -710,7 +710,7 @@ class TenderResourceTest(BaseTenderWebTest):
         response = self.app.patch_json('/tenders/{}?acc_token={}'.format(tender['id'], owner_token), {'data': {'procuringEntity': {'kind': 'defense'}}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.content_type, 'application/json')
-        self.assertNotEqual(response.json['data']['procuringEntity']['kind'], 'defense')
+        self.assertNotEqual(response.json['data']['procuringEntity'].get('kind'), 'defense')
 
         revisions = self.db.get(tender['id']).get('revisions')
         self.assertEqual(revisions[-1][u'changes'][0]['op'], u'remove')
