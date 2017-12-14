@@ -249,7 +249,7 @@ class TenderLotNegotiationResourceTest(BaseTenderContentWebTest):
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
         lot = response.json['data']
-        self.assertEqual(lot['value']['currency'], "UAH")
+        self.assertEqual(lot['value']['currency'], "MDL")
 
         # update tender currency
         response = self.app.patch_json('/tenders/{}?acc_token={}'.format(self.tender_id, self.tender_token),

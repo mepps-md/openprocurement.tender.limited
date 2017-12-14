@@ -789,8 +789,8 @@ class TenderNegotiationLotsCancellationResourceTest(BaseTenderContentWebTest):
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
-                                                                                       "valueAddedTaxIncluded": True},
+                                                                                       "currency": "MDL",
+                                                                                       "valueAddedTaxIncluded": False},
                                                           'lotID': lot['id']}})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.json['data']['status'], 'pending')
