@@ -29,7 +29,7 @@ try:
     # XXX aboveThreshold junk. not enabled for mepps, should be adapted to mepps
     # belowthreshold
     from openprocurement.tender.openua.models import Complaint as BaseComplaint
-    from openprocurement.tender.openua.models import Item
+    # from openprocurement.tender.openua.models import Item  # just in case
     from openprocurement.tender.openua.models import Tender as OpenUATender
 except ImportError:
     # use models from belowThreshold just in case Negotiation procedures are not
@@ -37,7 +37,6 @@ except ImportError:
     from openprocurement.api.models import Complaint as BaseComplaint
     from openprocurement.api.models import Item
     from openprocurement.api.models import Tender as OpenUATender
-
 
 
 class Value(BaseValue):
