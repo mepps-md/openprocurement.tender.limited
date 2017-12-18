@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openprocurement.api.models import get_now, timedelta
+from openprocurement.api.models import get_now, STAND_STILL_PENDING_SIGNED
 from openprocurement.api.utils import (
     apply_patch,
     save_tender,
@@ -126,7 +126,7 @@ class TenderAwardContractResource(BaseTenderAwardContractResource):
             self.request.errors.status = 403
             return
         if contract_status == 'pending.signed' and self.request.context.status == 'pending':
-            stand_still_end = last_status_change_date + timedelta(hours=24)
+            stand_still_end = last_status_change_date + STAND_STILL_PENDING_SIGNED
             if get_now() < stand_still_end:
                 self.request.errors.add('body', 'data', 'Can\'t return contract to pending status before ({})'.format((stand_still_end).isoformat()))
                 self.request.errors.status = 403
