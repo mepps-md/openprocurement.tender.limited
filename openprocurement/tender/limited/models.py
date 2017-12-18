@@ -105,7 +105,7 @@ class Contract(BaseContract):
     class Options:
         roles = {
             'edit': whitelist(),
-            'edit_contract': blacklist('id', 'documents', 'date', 'awardID', 'suppliers', 'contractID'),
+            'edit_contract': blacklist('id', 'documents', 'date', 'awardID', 'suppliers', 'items', 'contractID'),
         }
 
     def validate_dateSigned(self, data, value):

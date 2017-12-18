@@ -199,6 +199,7 @@ class TenderContractResourceTest(BaseTenderContentWebTest):
             {"data": {"value": {"amount": 238}}})
         self.assertEqual(response.status, '200 OK')
         self.assertEqual(response.json['data']['value']['amount'], 238)
+        item = deepcopy(response.json['data']["items"][0])
 
         # check contract.items modification (contract.item.unit.value.amount
         # modification should be allowed)
@@ -206,18 +207,15 @@ class TenderContractResourceTest(BaseTenderContentWebTest):
             self.tender_id, self.contract_id, self.tender_token),
             {"data": {"items": [{'unit': {'value': {'amount': 12}}}]}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['amount'], 12)
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['currency'], response.json['data']['value']['currency'])
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['valueAddedTaxIncluded'], response.json['data']['value']['valueAddedTaxIncluded'])
+        self.assertEqual(response.body, 'null')
 
         response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
             self.tender_id, self.contract_id, self.tender_token),
-            {"data": {"items": [{'unit': {'value': {'currency': "USD", 'valueAddedTaxIncluded': False}}}]}})
+            {"data": {"items": [{'unit': {'value': {'amount': 12, 'currency': "USD", 'valueAddedTaxIncluded': False}}}]}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['currency'], "USD")
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['valueAddedTaxIncluded'], False)
+        self.assertEqual(response.body, 'null')
 
+        # https://github.com/mepps-md/openprocurement.tender.limited/commit/eb06a90e3fd7a0c98a64b75e62a0d29591e1febb
         response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
             self.tender_id, self.contract_id, self.tender_token),
             {'data': {'items': [{
@@ -226,23 +224,14 @@ class TenderContractResourceTest(BaseTenderContentWebTest):
                 'deliveryLocation': {'latitude': "12.123", 'longitude': "170.123"}
             }]}})
         self.assertEqual(response.status, '200 OK')
-        self.assertEqual(response.content_type, 'application/json')
-        self.assertNotEqual(response.json['data']['items'][0]['description'], u"custom item descriptionX")
-        self.assertNotEqual(response.json['data']['items'][0]['quantity'], 99999)
-        self.assertNotIn('deliveryLocation', response.json['data']['items'][0])
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['amount'], 12)
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['currency'], "USD")
-        self.assertEqual(response.json['data']["items"][0]['unit']['value']['valueAddedTaxIncluded'], False)
+        self.assertEqual(response.body, 'null')
 
         # try to add/delete contract item
-        item = deepcopy(response.json['data']["items"][0])
         response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
             self.tender_id, self.contract_id, self.tender_token),
-            {'data': {'items': [{}, item]}},
-            status=403)
-        self.assertEqual(response.status, '403 Forbidden')
-        self.assertEqual(response.json['errors'][0]["description"],
-                         "Can't change items count")
+            {'data': {'items': [{}, item]}})
+        self.assertEqual(response.status, '200 OK')
+        self.assertEqual(response.body, 'null')
 
         response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
             self.tender_id, self.contract_id, self.tender_token),
