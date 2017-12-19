@@ -6,10 +6,8 @@ Tutorial
 Tender creation
 ---------------
 
-You can create three procedures: 
- * ``reporting`` - reporting with no stand-still period 
- * ``negotiation`` - negotiation procedure with 10 day stand-still before contract registration
- * ``negotiation.quick`` - quick negotiation procedure with 5 day stand-still before contract registration
+You can create one procedure:
+ * ``reporting`` - reporting with no stand-still period
 
 
 Creating tender for reporting procedure
@@ -29,25 +27,7 @@ Let's check what tender registry contains:
 .. include:: tutorial/tender-listing-after-procuringEntity.http
    :code:
 
-We do see the internal `id` of a tender (that can be used to construct full URL by prepending `http://api-sandbox.openprocurement.org/api/0/tenders/`) and its `dateModified` datestamp.
-
-
-Creating tender for negotiation procedure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To create tender for **negotiation** procedure you should set ``negotiation`` value for ``procurementMethodType``.
-
-.. include:: tutorial/create-tender-negotiation-procuringEntity.http
-   :code:
-
-
-Creating tender for negotiation.quick procedure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To create tender for **negotiation.quick** procedure you should set ``negotiation.quick`` value for ``procurementMethodType``.
-
-.. include:: tutorial/create-tender-negotiation-quick-procuringEntity.http
-   :code:
+We do see the internal `id` of a tender (that can be used to construct full URL by prepending `https://api-sandbox.mepps.openprocurement.net/0/tenders/`) and its `dateModified` datestamp.
 
 
 Modifying tender
@@ -79,7 +59,7 @@ follow the :ref:`upload` rules.
 .. include:: tutorial/upload-tender-notice.http
    :code:
 
-`201 Created` response code and `Location` header confirm document creation. 
+`201 Created` response code and `Location` header confirm document creation.
 
 In case we made an error, we can reupload the document over the older version:
 
@@ -92,26 +72,10 @@ Awarding
 Adding supplier information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Addition of supplier information is the same for all procedures.
-
 Procuring entity registers supplier information for **reporting** procedure:
 
 .. include:: tutorial/tender-award.http
    :code:
-
-Procuring entity registers supplier information for **negotiation** procedure:
-
-.. include:: tutorial/tender-negotiation-award.http
-   :code:
-
-You can notice that there is ``complaintPeriod`` record with ``startDate`` value generated.
-
-Procuring entity registers supplier information for **negotiation.quick** procedure:
-
-.. include:: tutorial/tender-negotiation-quick-award.http
-   :code:
-
-Award for **negotiation.quick** procedure also has ``complaintPeriod`` record with ``startDate`` value.
 
 
 Uploading award documentation
@@ -150,24 +114,10 @@ Procuring entity can confirm awarding decision:
 .. include:: tutorial/tender-award-approve.http
    :code:
 
-Award confirmation for **negotiation** procedure:
-
-.. include:: tutorial/tender-negotiation-award-approve.http
-   :code:
-
-The difference between ``startDate`` and ``endDate`` in ``complaintPeriod`` record for **negotiation** is 10 days.
-
-Award confirmation for **negotiation.quick** procedure:
-
-.. include:: tutorial/tender-negotiation-quick-award-approve.http
-   :code:
-
-The difference between ``startDate`` and ``endDate`` in ``complaintPeriod`` record for **negotiation.quick** is 5 days.
-
 Setting  contract value
 -----------------------
 
-By default contract value is set based on the award, but there is a possibility to set custom contract value. 
+By default contract value is set based on the award, but there is a possibility to set custom contract value.
 
 If you want to **lower contract value**, you can insert new one into the `amount` field.
 
@@ -175,14 +125,6 @@ If you want to **lower contract value**, you can insert new one into the `amount
    :code:
 
 `200 OK` response was returned. The value was modified successfully.
-
-Setting value per item's unit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: tutorial/tender-contract-set-contract_items_unit-value.http
-   :code:
-
-200 OK response was returned with successfully set item.unit.value structure.
 
 Setting contract signature date
 -------------------------------
@@ -237,23 +179,13 @@ Contract registration
 .. include:: tutorial/tender-contract-sign.http
    :code:
 
-**Negotiation** tender contract can be registered only after the stand-still (10 day period after the award confirmation):
-
-.. include:: tutorial/tender-negotiation-contract-sign.http
-   :code:
-
-**Negotiation.quick** tender contract can be registered after the stand-still (5 day period after the award confirmation):
-
-.. include:: tutorial/tender-negotiation-quick-contract-sign.http
-   :code:
-
 Cancelling tender
 -----------------
 
 Procuring entity can cancel tender anytime. The following steps should be applied:
 
 1. Prepare cancellation request
-2. Fill it with the protocol describing the cancellation reasons 
+2. Fill it with the protocol describing the cancellation reasons
 3. Cancel the tender with the reasons prepared.
 
 Only the request that has been activated (3rd step above) has power to
@@ -272,7 +204,7 @@ You should pass `reason`, `status` defaults to `pending`.
 .. include::  tutorial/prepare-cancellation.http
    :code:
 
-There are two possible types of cancellation reason - tender was `cancelled` or `unsuccessful`. By default 
+There are two possible types of cancellation reason - tender was `cancelled` or `unsuccessful`. By default
 ``reasonType`` value is `cancelled`.
 
 You can change ``reasonType`` value to `unsuccessful`.

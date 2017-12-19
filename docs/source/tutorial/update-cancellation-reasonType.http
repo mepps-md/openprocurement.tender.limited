@@ -1,8 +1,8 @@
-PATCH /api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/cancellations/bc29eeeaf99743f986c6c3950e562430?acc_token=a4b7ef7e4b1248eeb4856ef095f8e657 HTTP/1.0
+PATCH /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/cancellations/73cd7880549642ae94fd1c962d241de7?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 40
 Content-Type: application/json
-Host: api-sandbox.openprocurement.org
+Host: api-sandbox.mepps.openprocurement.net
 
 {
   "data": {
@@ -17,9 +17,9 @@ Content-Type: application/json; charset=UTF-8
     "status": "pending", 
     "reason": "cancellation reason", 
     "reasonType": "unsuccessful", 
-    "date": "2017-06-19T20:02:28.702391+03:00", 
+    "date": "2017-12-19T13:26:14.585410+02:00", 
     "cancellationOf": "tender", 
-    "id": "bc29eeeaf99743f986c6c3950e562430"
+    "id": "73cd7880549642ae94fd1c962d241de7"
   }
 }
 

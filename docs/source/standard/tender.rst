@@ -41,8 +41,6 @@ Schema
    |ocdsDescription|
    The entity managing the procurement, which may be different from the buyer who is paying / using the items being procured.
 
-   If :code:`procurementMethodType` is :code:`negotiation` or :code:`negotiation.quick`, then possible values of :code:`ProcuringEntity.kind` are limited to :code:`['general', 'special', 'defense']`.
-
 :value:
    :ref:`value`, required
 
@@ -74,7 +72,6 @@ Schema
 :contracts:
     List of :ref:`Contract` objects
 
-
    |ocdsDescription|
    The date or period on which an award is anticipated to be made.
 
@@ -105,7 +102,7 @@ Schema
 
     :`limited`:
         Default.
-        
+
     Procurement Method of the Tender.
 
 :procurementMethodRationale:
@@ -114,16 +111,10 @@ Schema
     Procurement Method Rationale of tender.
 
 :procurementMethodType:
-    string 
+    string
 
     :`reporting`:
         reporting procedure indentifier
-
-    :`negotiation`:
-        negotiation procedure indentifier
-
-    :`negotiation.quick`:
-        negotiation.quick procedure indentifier
 
 :dateModified:
     string, :ref:`date`
@@ -131,47 +122,6 @@ Schema
 
 :owner:
     string, auto-generated
-
-:cause:
-   string, required for **negotiation** procedure/ optional for **negotiation.quick** procedure
-    
-   Causes for using negotiation or negotiation.quick procedures. For more details see Article 35 of the Law of Ukraine "On Public Procurement".
-
-       Possible values for **negotiation** and **negotiation.quick** procedure:
-        
-   * `artContestIP`
-   Purchase of art or intellectual property
-
-   * `noCompetition`
-   Lack of competition
-
-   * `twiceUnsuccessful`
-   Two tenders have already been cancelled due to lack of participants
-
-   * `additionalPurchase`
-   Need to use the same supplier for unification, standardization, etc.
-
-   * `additionalConstruction`
-   Need of additional construction works
-
-   * `stateLegalServices`
-   Purchase of legal services connected with protection of rights and interests of Ukraine
-
-    Possible values for **negotiation.quick** procedure:
-
-   * `quick`
-   Procurement is urgent
-    
-:causeDescription:
-   string, multilingual, required for **negotiation** and **negotiation.quick** procedures
-    
-   Reasoning behind usage of negotiation or negotiation.quick procedures.
-
-:lots:
-   List of :ref:`lot` objects.
-
-   Contains all tender lots.
-   Only if `tender.procurementMethodType` is `negotiation` or `negotiation.quick`.
 
 Tender workflow
 ---------------

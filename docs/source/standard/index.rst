@@ -18,4 +18,3 @@ areas that were not covered by it.
    tender
    award
    cancellation
-   lot

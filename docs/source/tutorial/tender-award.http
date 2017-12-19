@@ -1,8 +1,8 @@
-POST /api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/awards?acc_token=a4b7ef7e4b1248eeb4856ef095f8e657 HTTP/1.0
+POST /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1284
+Content-Length: 1285
 Content-Type: application/json
-Host: api-sandbox.openprocurement.org
+Host: api-sandbox.mepps.openprocurement.net
 
 {
   "data": {
@@ -33,20 +33,20 @@ Host: api-sandbox.openprocurement.org
     ], 
     "id": "d373338bc3324f14b8b3d4af68922773", 
     "value": {
-      "currency": "UAH", 
+      "currency": "MDL", 
       "amount": 475000, 
-      "valueAddedTaxIncluded": "true"
+      "valueAddedTaxIncluded": "false"
     }
   }
 }
 
 Response: 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.openprocurement.org/api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/awards/f73383149db344199699e1a8f587d557
+Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards/37333e37dfa346608a6d10b38549ceb3
 {
   "data": {
     "status": "pending", 
-    "date": "2017-06-19T20:02:27.381100+03:00", 
+    "date": "2017-12-19T13:26:13.802932+02:00", 
     "suppliers": [
       {
         "contactPoint": {
@@ -70,11 +70,11 @@ Location: http://api-sandbox.openprocurement.org/api/2.3/tenders/7d7cb83ee1384fb
         }
       }
     ], 
-    "id": "f73383149db344199699e1a8f587d557", 
+    "id": "37333e37dfa346608a6d10b38549ceb3", 
     "value": {
-      "currency": "UAH", 
+      "currency": "MDL", 
       "amount": 475000.0, 
-      "valueAddedTaxIncluded": true
+      "valueAddedTaxIncluded": false
     }
   }
 }

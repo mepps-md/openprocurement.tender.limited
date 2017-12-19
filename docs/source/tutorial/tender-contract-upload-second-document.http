@@ -1,21 +1,21 @@
-POST /api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/contracts/8da00d38b52248c8a87fe8b3ef0b0159/documents?acc_token=a4b7ef7e4b1248eeb4856ef095f8e657 HTTP/1.0
+POST /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 207
-Content-Type: multipart/form-data; boundary=----------a_BoUnDaRy206947069328$
-Host: api-sandbox.openprocurement.org
+Content-Type: multipart/form-data; boundary=----------a_BoUnDaRy516007385196$
+Host: api-sandbox.mepps.openprocurement.net
 
 Response: 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.openprocurement.org/api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/contracts/8da00d38b52248c8a87fe8b3ef0b0159/documents/49459ab3d7f84c04a319c95f8cc78dc2
+Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents/992fa241a8d543fabc68ed654c4d44eb
 {
   "data": {
     "title": "contract_second_document.doc", 
-    "url": "http://api-sandbox.openprocurement.org/api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/contracts/8da00d38b52248c8a87fe8b3ef0b0159/documents/49459ab3d7f84c04a319c95f8cc78dc2?download=ee07c83dc2de4b2c82b617ad5c4d3d07", 
+    "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents/992fa241a8d543fabc68ed654c4d44eb?download=d810877f3d394029ab6044ec7fe71acd", 
     "format": "application/msword", 
     "documentOf": "tender", 
-    "datePublished": "2017-06-19T20:02:28.342656+03:00", 
-    "id": "49459ab3d7f84c04a319c95f8cc78dc2", 
-    "dateModified": "2017-06-19T20:02:28.342704+03:00"
+    "datePublished": "2017-12-19T13:26:14.371876+02:00", 
+    "id": "992fa241a8d543fabc68ed654c4d44eb", 
+    "dateModified": "2017-12-19T13:26:14.371905+02:00"
   }
 }
 

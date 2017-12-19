@@ -36,17 +36,15 @@ Schema
 
     |ocdsDescription|
     An array of additional classifications for the item. See the
-    itemClassificationScheme codelist for common options to use in OCDS. 
+    itemClassificationScheme codelist for common options to use in OCDS.
     This may also be used to present codes from an internal classification
     scheme.
-
-    It is mandatory to have at least one item with `ДКПП` as `scheme`.
 
 :unit:
     :ref:`Unit`
 
-    |ocdsDescription| 
-    Description of the unit which the good comes in e.g.  hours, kilograms. 
+    |ocdsDescription|
+    Description of the unit which the good comes in e.g.  hours, kilograms.
     Made up of a unit name, and the value of a single unit.
 
 :quantity:
@@ -78,12 +76,6 @@ Schema
         string, optional, usually not used
 
     `deliveryLocation` usually takes precedence over `deliveryAddress` if both are present.
-
-:relatedLot:
-    string
-
-    Id of related :ref:`lot`.
-
 
 .. _Classification:
 

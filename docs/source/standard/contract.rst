@@ -56,6 +56,8 @@ Schema
 
     * `pending` - this contract has been proposed, but is not yet in force.
       It may be awaiting signature.
+    * `pending.signed` - this contract can be sent for validation to the Treasury.
+      Returning to pending status can be performed only after 15 minutes.
     * `active` - this contract has been signed by all the parties, and is
       now legally in force.
     * `cancelled` - this contract has been cancelled prior to being signed.
@@ -80,14 +82,11 @@ Schema
 
     |ocdsDescription|
     The date the contract was signed. In the case of multiple signatures, the date of the last signature.
-    
+
     Time frame for `dateSigned`:
-    
-    * reporting procedure: 
+
+    * reporting procedure:
         [24 hours ago - now]
-    
-    * negotiation/negotiation.quick procedure: 
-        [complaint period end - now]
 
 :documents:
     List of :ref:`Document` objects
@@ -104,8 +103,11 @@ Contract workflow
         A [ label="pending*" ]
         B [ label="active"]
         C [ label="cancelled"]
+        D [ label="pending.signed"]
          A -> B;
          A -> C;
+         A -> D;
+         D -> B;
     }
 
 \* marks initial state

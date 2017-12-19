@@ -1,8 +1,8 @@
-PATCH /api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83?acc_token=a4b7ef7e4b1248eeb4856ef095f8e657 HTTP/1.0
+PATCH /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 80
 Content-Type: application/json
-Host: api-sandbox.openprocurement.org
+Host: api-sandbox.mepps.openprocurement.net
 
 {
   "data": {
@@ -24,16 +24,16 @@ Content-Type: application/json; charset=UTF-8
   "data": {
     "procurementMethod": "limited", 
     "status": "active", 
-    "title": "Послуги шкільних їдалень", 
+    "title": "Articole de papetărie şi alte articole din hârtie", 
     "items": [
       {
-        "description": "Послуги шкільних їдалень", 
+        "description": "Articole de papetărie şi alte articole din hârtie", 
         "classification": {
-          "scheme": "ДК021", 
-          "description": "Послуги з харчування у школах", 
-          "id": "55523100-3"
+          "scheme": "CPV", 
+          "description": "Articole de papetărie şi alte articole din hârtie", 
+          "id": "30199000-0"
         }, 
-        "description_en": "Services in school canteens", 
+        "description_en": "Stationery and paper", 
         "additionalClassifications": [
           {
             "scheme": "ДКПП", 
@@ -42,17 +42,17 @@ Content-Type: application/json; charset=UTF-8
           }
         ], 
         "deliveryAddress": {
-          "postalCode": "79000", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Банкова 1", 
-          "region": "м. Київ", 
-          "locality": "м. Київ"
+          "postalCode": "MD-2033", 
+          "countryName": "Republica Moldova", 
+          "streetAddress": "Piața Marii Adunari Naționale, 1", 
+          "region": "Chisinau", 
+          "locality": "Chisinau"
         }, 
         "deliveryDate": {
-          "startDate": "2017-06-21T20:02:22.515286+03:00", 
-          "endDate": "2017-06-24T20:02:22.515286+03:00"
+          "startDate": "2017-12-21T13:26:11.907207+02:00", 
+          "endDate": "2017-12-24T13:26:11.907207+02:00"
         }, 
-        "description_ru": "Услуги школьных столовых", 
+        "description_ru": "Канцелярские товары и бумага", 
         "id": "2dc54675d6364e2baffbc0f8e74432ac", 
         "unit": {
           "code": "MON", 
@@ -61,42 +61,42 @@ Content-Type: application/json; charset=UTF-8
         "quantity": 9
       }
     ], 
-    "title_en": "Services in school canteens", 
+    "title_en": "Stationery and paper", 
     "value": {
-      "currency": "UAH", 
+      "currency": "MDL", 
       "amount": 500000.0, 
-      "valueAddedTaxIncluded": true
+      "valueAddedTaxIncluded": false
     }, 
-    "dateModified": "2017-06-19T20:02:26.971415+03:00", 
+    "dateModified": "2017-12-19T13:26:13.536374+02:00", 
     "procuringEntity": {
       "contactPoint": {
-        "url": "http://sch10.edu.vn.ua/", 
-        "name": "Куца Світлана Валентинівна", 
-        "telephone": "+380 (432) 46-53-02"
+        "url": "http://www.edu.gov.md/", 
+        "email": "svetlana.lucinscaia@edu.md", 
+        "telephone": "212701", 
+        "name": "Lucinscaia Svetlana"
       }, 
       "identifier": {
-        "scheme": "UA-EDR", 
-        "id": "21725150", 
-        "legalName": "Заклад \"Загальноосвітня школа І-ІІІ ступенів № 10 Вінницької міської ради\""
+        "scheme": "MD-IDNO", 
+        "id": "1003254747454", 
+        "legalName": "Ministerul Educatiei al Republicii Moldova"
       }, 
-      "name": "ЗОСШ #10 м.Вінниці", 
-      "kind": "general", 
+      "name": "Ministerul Educatiei al Republicii Moldova", 
       "address": {
-        "postalCode": "21027", 
-        "countryName": "Україна", 
-        "streetAddress": "вул. Стахурського. 22", 
-        "region": "м. Вінниця", 
-        "locality": "м. Вінниця"
+        "postalCode": "MD-2033", 
+        "countryName": "Republica Moldova", 
+        "streetAddress": "Piața Marii Adunari Naționale, 1", 
+        "region": "Chisinau", 
+        "locality": "Chisinau"
       }
     }, 
-    "date": "2017-06-19T20:02:26.846364+03:00", 
+    "date": "2017-12-19T13:26:13.444214+02:00", 
     "procurementMethodType": "reporting", 
-    "description_en": "Services in school canteens", 
-    "title_ru": "Услуги школьных столовых", 
+    "description_en": "Stationery and paper", 
+    "title_ru": "Канцелярские товары и бумага", 
     "owner": "broker", 
-    "description_ru": "Услуги школьных столовых", 
-    "id": "7d7cb83ee1384fb78ca8aaf919990c83", 
-    "tenderID": "UA-2017-06-19-000001"
+    "description_ru": "Канцелярские товары и бумага", 
+    "id": "667ddc4fbc794e27955f606e324e989a", 
+    "tenderID": "MD-2017-12-19-000001"
   }
 }
 

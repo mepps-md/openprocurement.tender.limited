@@ -11,7 +11,7 @@ Welcome to openprocurement.tender.limited's documentation!
 Please report any problems or suggestions for improvement either via the
 `mailing list <http://groups.google.com/group/open-procurement-general>`_ or
 the `issue tracker
-<https://github.com/openprocurement/openprocurement.tender.limited/issues>`_.
+<https://github.com/mepps-md/openprocurement.tender.limited/issues>`_.
 
 Contents:
 
@@ -21,8 +21,6 @@ Contents:
    overview
    tutorial
    standard/index
-   multiple_lots_tutorial
-   complaints
    acceleration
    reference
 

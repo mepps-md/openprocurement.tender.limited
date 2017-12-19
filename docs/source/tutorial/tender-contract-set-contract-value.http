@@ -1,8 +1,8 @@
-PATCH /api/2.3/tenders/7d7cb83ee1384fb78ca8aaf919990c83/contracts/8da00d38b52248c8a87fe8b3ef0b0159?acc_token=a4b7ef7e4b1248eeb4856ef095f8e657 HTTP/1.0
+PATCH /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 36
 Content-Type: application/json
-Host: api-sandbox.openprocurement.org
+Host: api-sandbox.mepps.openprocurement.net
 
 {
   "data": {
@@ -19,13 +19,13 @@ Content-Type: application/json; charset=UTF-8
     "status": "pending", 
     "items": [
       {
-        "description": "Послуги шкільних їдалень", 
+        "description": "Articole de papetărie şi alte articole din hârtie", 
         "classification": {
-          "scheme": "ДК021", 
-          "description": "Послуги з харчування у школах", 
-          "id": "55523100-3"
+          "scheme": "CPV", 
+          "description": "Articole de papetărie şi alte articole din hârtie", 
+          "id": "30199000-0"
         }, 
-        "description_en": "Services in school canteens", 
+        "description_en": "Stationery and paper", 
         "additionalClassifications": [
           {
             "scheme": "ДКПП", 
@@ -34,17 +34,17 @@ Content-Type: application/json; charset=UTF-8
           }
         ], 
         "deliveryAddress": {
-          "postalCode": "79000", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Банкова 1", 
-          "region": "м. Київ", 
-          "locality": "м. Київ"
+          "postalCode": "MD-2033", 
+          "countryName": "Republica Moldova", 
+          "streetAddress": "Piața Marii Adunari Naționale, 1", 
+          "region": "Chisinau", 
+          "locality": "Chisinau"
         }, 
         "deliveryDate": {
-          "startDate": "2017-06-21T20:02:22.515286+03:00", 
-          "endDate": "2017-06-24T20:02:22.515286+03:00"
+          "startDate": "2017-12-21T13:26:11.907207+02:00", 
+          "endDate": "2017-12-24T13:26:11.907207+02:00"
         }, 
-        "description_ru": "Услуги школьных столовых", 
+        "description_ru": "Канцелярские товары и бумага", 
         "id": "2dc54675d6364e2baffbc0f8e74432ac", 
         "unit": {
           "code": "MON", 
@@ -77,14 +77,14 @@ Content-Type: application/json; charset=UTF-8
       }
     ], 
     "value": {
-      "currency": "UAH", 
+      "currency": "MDL", 
       "amount": 238.0, 
-      "valueAddedTaxIncluded": true
+      "valueAddedTaxIncluded": false
     }, 
-    "date": "2017-06-19T20:02:27.834848+03:00", 
-    "awardID": "f73383149db344199699e1a8f587d557", 
-    "id": "8da00d38b52248c8a87fe8b3ef0b0159", 
-    "contractID": "UA-2017-06-19-000001-1"
+    "date": "2017-12-19T13:26:14.074689+02:00", 
+    "awardID": "37333e37dfa346608a6d10b38549ceb3", 
+    "id": "117424f98bc04eb5b1f33da4e3c1275e", 
+    "contractID": "MD-2017-12-19-000001-1"
   }
 }
 
