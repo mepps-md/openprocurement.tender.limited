@@ -1,4 +1,4 @@
-PATCH /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards/37333e37dfa346608a6d10b38549ceb3?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
+PATCH /api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/awards/89e507f4b41446f29e9ada88300773f5?acc_token=d4574ebc11b047ae8b360d43132184d3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 30
 Content-Type: application/json
@@ -18,43 +18,43 @@ Content-Type: application/json; charset=UTF-8
     "documents": [
       {
         "title": "award_first_document.doc", 
-        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards/37333e37dfa346608a6d10b38549ceb3/documents/0f5a9af38e184e1e86593031979fb90f?download=5c695cf8ae994c799cd0946268f9bce7", 
+        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/awards/89e507f4b41446f29e9ada88300773f5/documents/ae2f7a9f68254ca4a743c9c41daa26d3?download=76edc40a6b3043f5a1afb20524b2cfb8", 
         "format": "application/msword", 
         "documentOf": "tender", 
-        "datePublished": "2017-12-19T13:26:13.848304+02:00", 
-        "id": "0f5a9af38e184e1e86593031979fb90f", 
-        "dateModified": "2017-12-19T13:26:13.848327+02:00"
+        "datePublished": "2017-12-20T13:36:18.218618+02:00", 
+        "id": "ae2f7a9f68254ca4a743c9c41daa26d3", 
+        "dateModified": "2017-12-20T13:36:18.218642+02:00"
       }, 
       {
         "title": "award_second_document.doc", 
-        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards/37333e37dfa346608a6d10b38549ceb3/documents/ea8df6bb48b74edc90531f568859a5eb?download=38cfb81884544e0c9e8bdd78ae2d2c74", 
+        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/awards/89e507f4b41446f29e9ada88300773f5/documents/8a377bb593e7479bbd16653b3e585fbe?download=96281314e08f43549abbc667fb55b279", 
         "format": "application/msword", 
         "documentOf": "tender", 
-        "datePublished": "2017-12-19T13:26:13.913498+02:00", 
-        "id": "ea8df6bb48b74edc90531f568859a5eb", 
-        "dateModified": "2017-12-19T13:26:13.913522+02:00"
+        "datePublished": "2017-12-20T13:36:18.280084+02:00", 
+        "id": "8a377bb593e7479bbd16653b3e585fbe", 
+        "dateModified": "2017-12-20T13:36:18.280106+02:00"
       }
     ], 
     "suppliers": [
       {
         "contactPoint": {
           "email": "soleksuk@gmail.com", 
-          "telephone": "+380 (432) 21-69-30", 
-          "name": "Сергій Олексюк"
+          "telephone": "212449", 
+          "name": "Vitalie Zlatan"
         }, 
         "identifier": {
-          "scheme": "UA-EDR", 
-          "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+          "scheme": "MD-IDNO", 
+          "legalName": "Întreprinderea de stat comunală de catering", 
           "id": "13313462", 
-          "uri": "http://sch10.edu.vn.ua/"
+          "uri": "http://sch10.edu.vn.md/"
         }, 
-        "name": "ДКП «Школяр»", 
+        "name": "Întreprinderea de stat comunală de catering", 
         "address": {
-          "postalCode": "21100", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Островського, 33", 
-          "region": "м. Вінниця", 
-          "locality": "м. Вінниця"
+          "postalCode": "MD-2033", 
+          "countryName": "Republica Moldova", 
+          "streetAddress": "Strada Miorita, 33", 
+          "region": "Chisinau", 
+          "locality": "Chisinau"
         }
       }
     ], 
@@ -63,8 +63,8 @@ Content-Type: application/json; charset=UTF-8
       "amount": 475000.0, 
       "valueAddedTaxIncluded": false
     }, 
-    "date": "2017-12-19T13:26:13.985783+02:00", 
-    "id": "37333e37dfa346608a6d10b38549ceb3"
+    "date": "2017-12-20T13:36:18.353473+02:00", 
+    "id": "89e507f4b41446f29e9ada88300773f5"
   }
 }
 

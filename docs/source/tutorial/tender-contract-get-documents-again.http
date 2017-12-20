@@ -1,4 +1,4 @@
-GET /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
+GET /api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3/documents?acc_token=d4574ebc11b047ae8b360d43132184d3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Host: api-sandbox.mepps.openprocurement.net
 
@@ -8,21 +8,21 @@ Content-Type: application/json; charset=UTF-8
   "data": [
     {
       "title": "contract_first_document.doc", 
-      "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents/976dcfe09b8d40deab7c86d9098955b5?download=f823087b897942bbab8b4769c1aed144", 
+      "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3/documents/1a13080f65ca48a29f21c56bcfbd6e85?download=9ca1a815445742a1bd57e7a555dfaae8", 
       "format": "application/msword", 
       "documentOf": "tender", 
-      "datePublished": "2017-12-19T13:26:14.284935+02:00", 
-      "id": "976dcfe09b8d40deab7c86d9098955b5", 
-      "dateModified": "2017-12-19T13:26:14.284957+02:00"
+      "datePublished": "2017-12-20T13:36:18.655345+02:00", 
+      "id": "1a13080f65ca48a29f21c56bcfbd6e85", 
+      "dateModified": "2017-12-20T13:36:18.655376+02:00"
     }, 
     {
       "title": "contract_second_document.doc", 
-      "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e/documents/992fa241a8d543fabc68ed654c4d44eb?download=d810877f3d394029ab6044ec7fe71acd", 
+      "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3/documents/322774f2f9924989ad45f3ac40aaeb0f?download=0a73a16d9bd04b1d882a82a8e0fdd194", 
       "format": "application/msword", 
       "documentOf": "tender", 
-      "datePublished": "2017-12-19T13:26:14.371876+02:00", 
-      "id": "992fa241a8d543fabc68ed654c4d44eb", 
-      "dateModified": "2017-12-19T13:26:14.371905+02:00"
+      "datePublished": "2017-12-20T13:36:18.778921+02:00", 
+      "id": "322774f2f9924989ad45f3ac40aaeb0f", 
+      "dateModified": "2017-12-20T13:36:18.778949+02:00"
     }
   ]
 }

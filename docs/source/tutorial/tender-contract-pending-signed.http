@@ -1,14 +1,12 @@
 PATCH /api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3?acc_token=d4574ebc11b047ae8b360d43132184d3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 36
+Content-Length: 38
 Content-Type: application/json
 Host: api-sandbox.mepps.openprocurement.net
 
 {
   "data": {
-    "value": {
-      "amount": 238
-    }
+    "status": "pending.signed"
   }
 }
 
@@ -16,7 +14,27 @@ Response: 200 OK
 Content-Type: application/json; charset=UTF-8
 {
   "data": {
-    "status": "pending", 
+    "status": "pending.signed", 
+    "documents": [
+      {
+        "title": "contract_first_document.doc", 
+        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3/documents/1a13080f65ca48a29f21c56bcfbd6e85?download=9ca1a815445742a1bd57e7a555dfaae8", 
+        "format": "application/msword", 
+        "documentOf": "tender", 
+        "datePublished": "2017-12-20T13:36:18.655345+02:00", 
+        "id": "1a13080f65ca48a29f21c56bcfbd6e85", 
+        "dateModified": "2017-12-20T13:36:18.655376+02:00"
+      }, 
+      {
+        "title": "contract_second_document.doc", 
+        "url": "http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3/documents/322774f2f9924989ad45f3ac40aaeb0f?download=0a73a16d9bd04b1d882a82a8e0fdd194", 
+        "format": "application/msword", 
+        "documentOf": "tender", 
+        "datePublished": "2017-12-20T13:36:18.778921+02:00", 
+        "id": "322774f2f9924989ad45f3ac40aaeb0f", 
+        "dateModified": "2017-12-20T13:36:18.778949+02:00"
+      }
+    ], 
     "items": [
       {
         "description": "Articole de papetărie şi alte articole din hârtie", 
@@ -76,12 +94,17 @@ Content-Type: application/json; charset=UTF-8
         }
       }
     ], 
+    "period": {
+      "startDate": "2017-12-20T13:36:16.048704+02:00", 
+      "endDate": "2018-12-20T13:36:16.048704+02:00"
+    }, 
     "value": {
       "currency": "MDL", 
       "amount": 238.0, 
       "valueAddedTaxIncluded": false
     }, 
-    "date": "2017-12-20T13:36:18.441644+02:00", 
+    "dateSigned": "2017-12-20T13:36:16.048704+02:00", 
+    "date": "2017-12-20T13:36:18.926075+02:00", 
     "awardID": "89e507f4b41446f29e9ada88300773f5", 
     "id": "06db0c6b14d746989b39fd7f7b8d57e3", 
     "contractID": "MD-2017-12-20-000001-1"

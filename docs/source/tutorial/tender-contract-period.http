@@ -1,4 +1,4 @@
-PATCH /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/contracts/117424f98bc04eb5b1f33da4e3c1275e?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
+PATCH /api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/contracts/06db0c6b14d746989b39fd7f7b8d57e3?acc_token=d4574ebc11b047ae8b360d43132184d3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
 Content-Length: 106
 Content-Type: application/json
@@ -7,8 +7,8 @@ Host: api-sandbox.mepps.openprocurement.net
 {
   "data": {
     "period": {
-      "startDate": "2017-12-19T13:26:11.907207", 
-      "endDate": "2018-12-19T13:26:11.907207"
+      "startDate": "2017-12-20T13:36:16.048704", 
+      "endDate": "2018-12-20T13:36:16.048704"
     }
   }
 }
@@ -42,8 +42,8 @@ Content-Type: application/json; charset=UTF-8
           "locality": "Chisinau"
         }, 
         "deliveryDate": {
-          "startDate": "2017-12-21T13:26:11.907207+02:00", 
-          "endDate": "2017-12-24T13:26:11.907207+02:00"
+          "startDate": "2017-12-22T13:36:16.048704+02:00", 
+          "endDate": "2017-12-25T13:36:16.048704+02:00"
         }, 
         "description_ru": "Канцелярские товары и бумага", 
         "id": "2dc54675d6364e2baffbc0f8e74432ac", 
@@ -58,39 +58,39 @@ Content-Type: application/json; charset=UTF-8
       {
         "contactPoint": {
           "email": "soleksuk@gmail.com", 
-          "telephone": "+380 (432) 21-69-30", 
-          "name": "Сергій Олексюк"
+          "telephone": "212449", 
+          "name": "Vitalie Zlatan"
         }, 
         "identifier": {
-          "scheme": "UA-EDR", 
-          "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+          "scheme": "MD-IDNO", 
+          "legalName": "Întreprinderea de stat comunală de catering", 
           "id": "13313462", 
-          "uri": "http://sch10.edu.vn.ua/"
+          "uri": "http://sch10.edu.vn.md/"
         }, 
-        "name": "ДКП «Школяр»", 
+        "name": "Întreprinderea de stat comunală de catering", 
         "address": {
-          "postalCode": "21100", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Островського, 33", 
-          "region": "м. Вінниця", 
-          "locality": "м. Вінниця"
+          "postalCode": "MD-2033", 
+          "countryName": "Republica Moldova", 
+          "streetAddress": "Strada Miorita, 33", 
+          "region": "Chisinau", 
+          "locality": "Chisinau"
         }
       }
     ], 
     "period": {
-      "startDate": "2017-12-19T13:26:11.907207+02:00", 
-      "endDate": "2018-12-19T13:26:11.907207+02:00"
+      "startDate": "2017-12-20T13:36:16.048704+02:00", 
+      "endDate": "2018-12-20T13:36:16.048704+02:00"
     }, 
-    "dateSigned": "2017-12-19T13:26:11.907207+02:00", 
+    "dateSigned": "2017-12-20T13:36:16.048704+02:00", 
     "value": {
       "currency": "MDL", 
       "amount": 238.0, 
       "valueAddedTaxIncluded": false
     }, 
-    "date": "2017-12-19T13:26:14.214658+02:00", 
-    "awardID": "37333e37dfa346608a6d10b38549ceb3", 
-    "id": "117424f98bc04eb5b1f33da4e3c1275e", 
-    "contractID": "MD-2017-12-19-000001-1"
+    "date": "2017-12-20T13:36:18.583411+02:00", 
+    "awardID": "89e507f4b41446f29e9ada88300773f5", 
+    "id": "06db0c6b14d746989b39fd7f7b8d57e3", 
+    "contractID": "MD-2017-12-20-000001-1"
   }
 }
 

@@ -1,6 +1,6 @@
-POST /api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards?acc_token=1142190ec4f04f50a88fb21c1cd589e4 HTTP/1.0
+POST /api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/awards?acc_token=d4574ebc11b047ae8b360d43132184d3 HTTP/1.0
 Authorization: Basic YnJva2VyOg==
-Content-Length: 1285
+Content-Length: 697
 Content-Type: application/json
 Host: api-sandbox.mepps.openprocurement.net
 
@@ -11,23 +11,23 @@ Host: api-sandbox.mepps.openprocurement.net
     "suppliers": [
       {
         "contactPoint": {
-          "telephone": "+380 (432) 21-69-30", 
-          "name": "Сергій Олексюк", 
+          "telephone": "212449", 
+          "name": "Vitalie Zlatan", 
           "email": "soleksuk@gmail.com"
         }, 
         "identifier": {
-          "scheme": "UA-EDR", 
-          "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+          "scheme": "MD-IDNO", 
+          "legalName": "Întreprinderea de stat comunală de catering", 
           "id": "13313462", 
-          "uri": "http://sch10.edu.vn.ua/"
+          "uri": "http://sch10.edu.vn.md/"
         }, 
-        "name": "ДКП «Школяр»", 
+        "name": "Întreprinderea de stat comunală de catering", 
         "address": {
-          "countryName": "Україна", 
-          "postalCode": "21100", 
-          "region": "м. Вінниця", 
-          "streetAddress": "вул. Островського, 33", 
-          "locality": "м. Вінниця"
+          "countryName": "Republica Moldova", 
+          "postalCode": "MD-2033", 
+          "region": "Chisinau", 
+          "streetAddress": "Strada Miorita, 33", 
+          "locality": "Chisinau"
         }
       }
     ], 
@@ -42,35 +42,35 @@ Host: api-sandbox.mepps.openprocurement.net
 
 Response: 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a/awards/37333e37dfa346608a6d10b38549ceb3
+Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb/awards/89e507f4b41446f29e9ada88300773f5
 {
   "data": {
     "status": "pending", 
-    "date": "2017-12-19T13:26:13.802932+02:00", 
+    "date": "2017-12-20T13:36:18.171434+02:00", 
     "suppliers": [
       {
         "contactPoint": {
           "email": "soleksuk@gmail.com", 
-          "telephone": "+380 (432) 21-69-30", 
-          "name": "Сергій Олексюк"
+          "telephone": "212449", 
+          "name": "Vitalie Zlatan"
         }, 
         "identifier": {
-          "scheme": "UA-EDR", 
-          "legalName": "Державне комунальне підприємство громадського харчування «Школяр»", 
+          "scheme": "MD-IDNO", 
+          "legalName": "Întreprinderea de stat comunală de catering", 
           "id": "13313462", 
-          "uri": "http://sch10.edu.vn.ua/"
+          "uri": "http://sch10.edu.vn.md/"
         }, 
-        "name": "ДКП «Школяр»", 
+        "name": "Întreprinderea de stat comunală de catering", 
         "address": {
-          "postalCode": "21100", 
-          "countryName": "Україна", 
-          "streetAddress": "вул. Островського, 33", 
-          "region": "м. Вінниця", 
-          "locality": "м. Вінниця"
+          "postalCode": "MD-2033", 
+          "countryName": "Republica Moldova", 
+          "streetAddress": "Strada Miorita, 33", 
+          "region": "Chisinau", 
+          "locality": "Chisinau"
         }
       }
     ], 
-    "id": "37333e37dfa346608a6d10b38549ceb3", 
+    "id": "89e507f4b41446f29e9ada88300773f5", 
     "value": {
       "currency": "MDL", 
       "amount": 475000.0, 

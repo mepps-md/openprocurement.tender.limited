@@ -87,24 +87,24 @@ supplier = {'data':
         "suppliers": [
             {
                 "address": {
-                    "countryName": "Україна",
-                    "locality": "м. Вінниця",
-                    "postalCode": "21100",
-                    "region": "м. Вінниця",
-                    "streetAddress": "вул. Островського, 33"
+                    "countryName": "Republica Moldova",
+                    "locality": "Chisinau",
+                    "postalCode": "MD-2033",
+                    "region": "Chisinau",
+                    "streetAddress": "Strada Miorita, 33"
                 },
                 "contactPoint": {
                     "email": "soleksuk@gmail.com",
-                    "name": "Сергій Олексюк",
-                    "telephone": "+380 (432) 21-69-30"
+                    "name": "Vitalie Zlatan",
+                    "telephone": "212449"
                 },
                 "identifier": {
                     "id": "13313462",
-                    "legalName": "Державне комунальне підприємство громадського харчування «Школяр»",
-                    "scheme": "UA-EDR",
-                    "uri": "http://sch10.edu.vn.ua/"
+                    "legalName": "Întreprinderea de stat comunală de catering",
+                    "scheme": "MD-IDNO",
+                    "uri": "http://sch10.edu.vn.md/"
                 },
-                "name": "ДКП «Школяр»"
+                "name": "Întreprinderea de stat comunală de catering"
             }
         ],
         "value": {
@@ -377,6 +377,11 @@ class TenderLimitedResourceTest(BaseTenderWebTest):
         # for i in tender.get('awards', []):
             # i['complaintPeriod']['endDate'] = i['complaintPeriod']['startDate']
         # self.db.save(tender)
+
+        with open('docs/source/tutorial/tender-contract-pending-signed.http', 'w') as self.app.file_obj:
+            response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
+                    self.tender_id, self.contract_id, owner_token), {'data': {'status': 'pending.signed'}})
+            self.assertEqual(response.status, '200 OK')
 
         with open('docs/source/tutorial/tender-contract-sign.http', 'w') as self.app.file_obj:
             response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(

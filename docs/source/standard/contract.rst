@@ -105,9 +105,11 @@ Contract workflow
         C [ label="cancelled"]
         D [ label="pending.signed"]
          A -> B;
-         A -> C;
          A -> D;
          D -> B;
+         D -> A;
+         edge[style=dashed];
+         A -> C;
     }
 
-\* marks initial state
+\* marks initial state. Dashed line marks auto-trasition on award cancellation

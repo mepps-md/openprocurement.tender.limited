@@ -173,8 +173,13 @@ Let's see the list of all uploaded contract documents:
 
 Contract registration
 ---------------------
+To ensure contract is fetched and sent to Treasury for validation, upon confirming award qualification,
+contract is to be switched into pending.signed status:
 
-**Reporting** tender contract can be registered immediately after award confirmation:
+.. include:: tutorial/tender-contract-pending-signed.http
+   :code:
+
+Tender contract can be registered by changing it's status to active:
 
 .. include:: tutorial/tender-contract-sign.http
    :code:

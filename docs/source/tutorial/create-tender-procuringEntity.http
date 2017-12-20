@@ -58,8 +58,8 @@ Host: api-sandbox.mepps.openprocurement.net
           "locality": "Chisinau"
         }, 
         "deliveryDate": {
-          "startDate": "2017-12-21T13:26:11.907207", 
-          "endDate": "2017-12-24T13:26:11.907207"
+          "startDate": "2017-12-22T13:36:16.048704", 
+          "endDate": "2017-12-25T13:36:16.048704"
         }, 
         "description_ru": "Канцелярские товары и бумага", 
         "id": "2dc54675d6364e2baffbc0f8e74432ac"
@@ -77,11 +77,11 @@ Host: api-sandbox.mepps.openprocurement.net
 
 Response: 201 Created
 Content-Type: application/json; charset=UTF-8
-Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fbc794e27955f606e324e989a
+Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/e880178c4afa45b08d1c9873d61cd6eb
 {
   "access": {
-    "transfer": "72067ab011e242429dede7ecbc133a1f", 
-    "token": "1142190ec4f04f50a88fb21c1cd589e4"
+    "transfer": "10dcd967930c45a5859159cefa780d70", 
+    "token": "d4574ebc11b047ae8b360d43132184d3"
   }, 
   "data": {
     "procurementMethod": "limited", 
@@ -111,8 +111,8 @@ Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fb
           "locality": "Chisinau"
         }, 
         "deliveryDate": {
-          "startDate": "2017-12-21T13:26:11.907207+02:00", 
-          "endDate": "2017-12-24T13:26:11.907207+02:00"
+          "startDate": "2017-12-22T13:36:16.048704+02:00", 
+          "endDate": "2017-12-25T13:36:16.048704+02:00"
         }, 
         "description_ru": "Канцелярские товары и бумага", 
         "id": "2dc54675d6364e2baffbc0f8e74432ac"
@@ -124,7 +124,7 @@ Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fb
       "amount": 500000.0, 
       "valueAddedTaxIncluded": false
     }, 
-    "dateModified": "2017-12-19T13:26:13.446048+02:00", 
+    "dateModified": "2017-12-20T13:36:17.802034+02:00", 
     "procuringEntity": {
       "contactPoint": {
         "url": "http://www.edu.gov.md/", 
@@ -146,14 +146,14 @@ Location: http://api-sandbox.mepps.openprocurement.net/api/2.3/tenders/667ddc4fb
         "locality": "Chisinau"
       }
     }, 
-    "date": "2017-12-19T13:26:13.444214+02:00", 
+    "date": "2017-12-20T13:36:17.798391+02:00", 
     "procurementMethodType": "reporting", 
     "description_en": "Stationery and paper", 
     "title_ru": "Канцелярские товары и бумага", 
     "owner": "broker", 
     "description_ru": "Канцелярские товары и бумага", 
-    "id": "667ddc4fbc794e27955f606e324e989a", 
-    "tenderID": "MD-2017-12-19-000001"
+    "id": "e880178c4afa45b08d1c9873d61cd6eb", 
+    "tenderID": "MD-2017-12-20-000001"
   }
 }
 
