@@ -8,7 +8,6 @@ requires = [
     'openprocurement.api>=2.4',
     'openprocurement.tender.core>=2.4',
     'openprocurement.tender.belowthreshold>=2.4',
-    'openprocurement.tender.openua>=2.4.2',
 ]
 
 test_requires = requires + [
