@@ -381,10 +381,12 @@ class TenderAwardDocumentResourceTest(BaseTenderContentWebTest, TenderAwardDocum
     def setUp(self):
         super(TenderAwardDocumentResourceTest, self).setUp()
         # Create award
-        response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                      {'data': {'suppliers': [test_organization],
-                                                'qualified': True,
-                                                'status': 'pending'}})
+        response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+            self.tender_id, self.tender_token), {'data': {
+                'suppliers': [test_organization],
+                'qualified': True,
+                'status': 'pending',
+                'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
         award = response.json['data']
         self.award_id = award['id']
 

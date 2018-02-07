@@ -87,11 +87,35 @@ def create_tender_award_invalid(self):
             u'url', u'name': u'tender_id'}
     ])
 
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'status': 'pending'}}, status=422)
+    self.assertEqual(response.status, '422 Unprocessable Entity')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['status'], 'error')
+    self.assertEqual(response.json['errors'], [
+        {u'description': [u'This field is required.'], u'location': u'body', u'name': u'value'}])
+
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'status': 'pending',
+            "value": {"amount": 500}}}, status=422)
+    self.assertEqual(response.status, '422 Unprocessable Entity')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['status'], 'error')
+    self.assertEqual(response.json['errors'], [
+        {u'description': [u'Currently, only procedures with VAT excluded are supported'],
+         u'location': u'body', u'name': u'value'}])
+
     self.set_status('complete')
 
-    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                  {'data': {'suppliers': [test_organization],
-                                            'status': 'pending'}}, status=403)
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['errors'][0]["description"],
@@ -100,11 +124,13 @@ def create_tender_award_invalid(self):
 
 def create_tender_award(self):
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'subcontractingDetails': 'Details',
-                                                          'items': self.test_tender_data_local['items'],
-                                                          'status': 'pending',
-                                                          'qualified': True}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'subcontractingDetails': 'Details',
+        'items': self.test_tender_data_local['items'],
+        'status': 'pending',
+        'qualified': True,
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -159,9 +185,11 @@ def create_tender_award(self):
 
 def canceling_created_award_and_create_new_one(self):
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'qualified': True,
-                                                          'status': 'pending'}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'qualified': True,
+        'status': 'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -174,9 +202,11 @@ def canceling_created_award_and_create_new_one(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data'][-1], award)
 
-    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                  {'data': {'suppliers': [test_organization], 'status': 'pending'}},
-                                  status=403)
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't create new award while any (pending) award exists")
@@ -187,9 +217,11 @@ def canceling_created_award_and_create_new_one(self):
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data']['status'], u'active')
 
-    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                  {'data': {'suppliers': [test_organization], 'status': 'pending'}},
-                                  status=403)
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}}, status=403)
     self.assertEqual(response.status, '403 Forbidden')
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't create new award while any (active) award exists")
@@ -202,9 +234,11 @@ def canceling_created_award_and_create_new_one(self):
     self.assertEqual(response.json['data']['status'], u'cancelled')
 
     # Create new award
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'qualified': True,
-                                                          'status': 'pending'}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'qualified': True,
+        'status': 'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     new_award = response.json['data']
@@ -236,9 +270,11 @@ def canceling_created_award_and_create_new_one(self):
 
 def patch_tender_award(self):
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'qualified': True,
-                                                          'status': u'pending', "value": {"amount": 500}}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'qualified': True,
+        'status': u'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -323,8 +359,10 @@ def patch_tender_award(self):
     self.assertEqual(response.status, '200 OK')
 
     # create new award and test other states
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'status': u'pending', "value": {"amount": 500}}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'status': u'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -343,8 +381,10 @@ def patch_tender_award(self):
     self.assertEqual(response.json['errors'][0]["description"],
                      "Can't update award in current (unsuccessful) status")
 
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization],
-                                                          'status': u'pending', "value": {"amount": 500}}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'status': u'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -401,8 +441,11 @@ def patch_tender_award(self):
 
 def patch_tender_award_unsuccessful(self):
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization], 'qualified': True,
-                                                          'status': u'pending', "value": {"amount": 500}}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'qualified': True,
+        'status': u'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -438,8 +481,11 @@ def patch_tender_award_unsuccessful(self):
 
 def get_tender_award(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
-        self.tender_id, self.tender_token),
-        {'data': {'suppliers': [test_organization], 'qualified': True, 'status': 'pending'}})
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'qualified': True,
+            'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -471,8 +517,11 @@ def get_tender_award(self):
 
 def activate_contract_with_cancelled_award(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
-        self.tender_id, self.tender_token),
-        {'data': {'suppliers': [test_organization], 'qualified': True, 'status': 'pending'}})
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'qualified': True,
+            'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.json['data']['status'], 'pending')
     award = response.json['data']
@@ -507,8 +556,11 @@ def activate_contract_with_cancelled_award(self):
 
 def create_tender_award_complaints(self):
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)
-    response = self.app.post_json(request_path, {'data': {'suppliers': [test_organization], 'qualified': True,
-                                                          'status': 'pending'}})
+    response = self.app.post_json(request_path, {'data': {
+        'suppliers': [test_organization],
+        'qualified': True,
+        'status': 'pending',
+        'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     award = response.json['data']
@@ -624,7 +676,7 @@ def create_award_with_lot(self):
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     lot = response.json['data']
-    self.assertEqual(lot['value']['currency'], "UAH")
+    self.assertEqual(lot['value']['currency'], "MDL")
 
     # try create without lotID field
     request_path = '/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token)

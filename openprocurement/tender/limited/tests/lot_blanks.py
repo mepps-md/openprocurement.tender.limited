@@ -245,7 +245,7 @@ def patch_tender_currency(self):
     self.assertEqual(response.status, '201 Created')
     self.assertEqual(response.content_type, 'application/json')
     lot = response.json['data']
-    self.assertEqual(lot['value']['currency'], "UAH")
+    self.assertEqual(lot['value']['currency'], "MDL")
 
     # update tender currency
     response = self.app.patch_json('/tenders/{}?acc_token={}'.format(self.tender_id, self.tender_token),
@@ -574,7 +574,7 @@ def cancel_lot_after_sing_contract(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
         self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                       'qualified': True, 'value': {"amount": 469,
-                                                                                   "currency": "UAH",
+                                                                                   "currency": "MDL",
                                                                                    "valueAddedTaxIncluded": True},
                                                       'lotID': lot['id']}})
     self.assertEqual(response.status, '201 Created')
@@ -627,7 +627,7 @@ def cancel_lot_with_complaint(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
         self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                       'qualified': True, 'value': {"amount": 469,
-                                                                                   "currency": "UAH",
+                                                                                   "currency": "MDL",
                                                                                    "valueAddedTaxIncluded": True},
                                                       'lotID': lot['id']}})
     self.assertEqual(response.status, '201 Created')
@@ -708,7 +708,7 @@ def last_lot_complete(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
         self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                       'qualified': True, 'value': {"amount": 469,
-                                                                                   "currency": "UAH",
+                                                                                   "currency": "MDL",
                                                                                    "valueAddedTaxIncluded": True},
                                                       'lotID': second_lot['id']}})
     response = self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(
@@ -719,7 +719,7 @@ def last_lot_complete(self):
     response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
         self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                       'qualified': True, 'value': {"amount": 469,
-                                                                                   "currency": "UAH",
+                                                                                   "currency": "MDL",
                                                                                    "valueAddedTaxIncluded": True},
                                                       'lotID': third_lot['id']}})
     response = self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(

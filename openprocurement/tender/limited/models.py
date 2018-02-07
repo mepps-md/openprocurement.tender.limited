@@ -161,9 +161,14 @@ class Award(BaseAward):
 
     qualified = BooleanType()
     items = ListType(ModelType(Item))
+    value = ModelType(Value, required=True)
     documents = ListType(ModelType(Document), default=list())
     complaints = ListType(ModelType(Complaint), default=list())
     complaintPeriod = ModelType(Period)
+
+    def validate_value(self, data, value):
+        if value.valueAddedTaxIncluded is not False:
+            raise ValidationError(u"Currently, only procedures with VAT excluded are supported")
 
 
 ReportingAward = Award

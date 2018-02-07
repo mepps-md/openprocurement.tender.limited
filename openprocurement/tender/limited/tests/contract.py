@@ -51,8 +51,8 @@ class TenderContractResourceTest(BaseTenderContentWebTest, TenderContractResourc
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
-                                                                                       "valueAddedTaxIncluded": True}}})
+                                                                                       "currency": "MDL",
+                                                                                       "valueAddedTaxIncluded": False}}})
         award = response.json['data']
         self.award_id = award['id']
         response = self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(
@@ -104,7 +104,7 @@ class TenderNegotiationLotContractResourceTest(TenderNegotiationContractResource
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
+                                                                                       "currency": "MDL",
                                                                                        "valueAddedTaxIncluded": True},
                                                           'lotID': lot1['id']}})
         award = response.json['data']
@@ -156,7 +156,7 @@ class TenderNegotiationLot2ContractResourceTest(BaseTenderContentWebTest):
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
+                                                                                       "currency": "MDL",
                                                                                        "valueAddedTaxIncluded": True},
                                                           'lotID': lot1['id']}})
         award = response.json['data']
@@ -168,7 +168,7 @@ class TenderNegotiationLot2ContractResourceTest(BaseTenderContentWebTest):
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
+                                                                                       "currency": "MDL",
                                                                                        "valueAddedTaxIncluded": True},
                                                           'lotID': lot2['id']}})
         award = response.json['data']
@@ -247,7 +247,7 @@ class TenderNegotiationQuickLotAccelerationTest(TenderNegotiationQuickAccelerati
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
+                                                                                       "currency": "MDL",
                                                                                        "valueAddedTaxIncluded": True},
                                                           'lotID': lot1['id']}})
         award = response.json['data']
@@ -268,8 +268,10 @@ class TenderContractDocumentResourceTest(BaseTenderContentWebTest, TenderContrac
 
     def create_award(self):
         # Create award
-        response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                      {'data': {'suppliers': [test_organization], 'status': 'pending'}})
+        response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+            self.tender_id, self.tender_token), {'data': {
+                'suppliers': [test_organization], 'status': 'pending',
+                'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
         award = response.json['data']
         self.award_id = award['id']
         self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(
@@ -312,7 +314,7 @@ class TenderContractNegotiationLotDocumentResourceTest(TenderContractDocumentRes
         response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
             self.tender_id, self.tender_token), {'data': {'suppliers': [test_organization], 'status': 'pending',
                                                           'qualified': True, 'value': {"amount": 469,
-                                                                                       "currency": "UAH",
+                                                                                       "currency": "MDL",
                                                                                        "valueAddedTaxIncluded": True},
                                                           'lotID': lot1['id']}})
         award = response.json['data']

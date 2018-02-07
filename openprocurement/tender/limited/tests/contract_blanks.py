@@ -147,8 +147,10 @@ def patch_tender_contract(self):
     tender_id = response.json['data']['id']
     tender_token = response.json['access']['token']
 
-    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(tender_id, tender_token),
-                                  {'data': {'suppliers': [test_organization], 'status': 'pending'}})
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        tender_id, tender_token), {'data': {
+            'suppliers': [test_organization], 'status': 'pending',
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     award_id = response.json['data']['id']
     response = self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(tender_id, award_id, tender_token),
                                    {"data": {'qualified': True, "status": "active"}})
@@ -278,8 +280,10 @@ def award_id_change_is_not_allowed(self):
     old_award_id = self.award_id
 
     # upload new award
-    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(self.tender_id, self.tender_token),
-                                  {'data': {'suppliers': [test_organization]}})
+    response = self.app.post_json('/tenders/{}/awards?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {
+            'suppliers': [test_organization],
+            'value': {'amount': 500, 'valueAddedTaxIncluded': False}}})
     award = response.json['data']
     response = self.app.patch_json('/tenders/{}/awards/{}?acc_token={}'.format(
         self.tender_id, award['id'], self.tender_token), {"data": {'qualified': True, "status": "active"}})
