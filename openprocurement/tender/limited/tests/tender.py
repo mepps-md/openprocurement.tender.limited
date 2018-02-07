@@ -54,10 +54,6 @@ from openprocurement.tender.limited.tests.tender_blanks import (
     create_tender_accreditation,
 )
 
-from openprocurement.tender.openua.tests.tender_blanks import (
-    # TenderResourceTest
-    empty_listing,
-)
 
 
 class AccreditationTenderTest(BaseTenderWebTest):
@@ -87,7 +83,6 @@ class TenderNegotiationQuickTest(TenderNegotiationTest):
 class TenderResourceTest(BaseTenderWebTest):
     initial_data = test_tender_data
 
-    test_empty_listing = snitch(empty_listing)
     test_listing = snitch(listing)
     test_tender_award_create = snitch(tender_award_create)
     test_listing_changes = snitch(listing_changes)
