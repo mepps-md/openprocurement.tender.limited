@@ -16,8 +16,9 @@ from openprocurement.tender.core.utils import (
 from openprocurement.tender.core.validation import (
     validate_patch_award_data, validate_award_data,
 )
-
-from openprocurement.tender.openua.utils import calculate_normalized_date
+# XXX: disabled to run without openua dependency while Negotiation not
+# implemented
+# from openprocurement.tender.openua.utils import calculate_normalized_date
 
 from openprocurement.tender.limited.validation import (
     validate_create_new_award,

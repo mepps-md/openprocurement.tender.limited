@@ -8,8 +8,12 @@ from openprocurement.tender.core.utils import (
 from openprocurement.tender.core.validation import (
     validate_lot_data, validate_patch_lot_data,
 )
-from openprocurement.tender.openua.views.lot import (
-    TenderUaLotResource as TenderLotResource
+# XXX Hack Negotiation procedures are not implemented yet
+# from openprocurement.tender.openua.views.lot import (
+#     TenderUaLotResource as TenderLotResource
+# )
+from openprocurement.tender.belowthreshold.views.lot import (
+    TenderLotResource
 )
 from openprocurement.tender.limited.validation import (
     validate_lot_operation_with_awards,

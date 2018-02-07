@@ -30,10 +30,14 @@ from openprocurement.tender.core.models import (
     Document, BaseTender, ITender, Cancellation as BaseCancellation,
     Contract as BaseContract, ProcuringEntity as BaseProcuringEntity
 )
-from openprocurement.tender.openua.models import Complaint as BaseComplaint
-from openprocurement.tender.openua.models import Item
-from openprocurement.tender.openua.models import Tender as OpenUATender
+# XXX change above ua deps to below md
+# from openprocurement.tender.openua.models import Complaint as BaseComplaint
+# from openprocurement.tender.openua.models import Item
+# from openprocurement.tender.openua.models import Tender as OpenUATender
 
+from openprocurement.tender.core.models import Complaint as BaseComplaint
+from openprocurement.tender.core.models import Item
+from openprocurement.tender.belowthreshold.models import Tender as OpenUATender
 
 class IReportingTender(ITender):
     """ Reporting Tender marker interface """

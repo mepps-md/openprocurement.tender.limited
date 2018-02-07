@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from openprocurement.tender.core.adapters import TenderConfigurator
-from openprocurement.tender.openua.constants import STATUS4ROLE
+# XXX change above ua deps to below md. Non critical - no complaints in md for now
+# from openprocurement.tender.openua.constants import STATUS4ROLE
+from openprocurement.tender.belowthreshold.constants import STATUS4ROLE
 from openprocurement.tender.limited.models import (
     ReportingTender, NegotiationTender, NegotiationQuickTender
 )

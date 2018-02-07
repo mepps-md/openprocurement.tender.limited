@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from openprocurement.api.utils import raise_operation_error, error_handler
 from openprocurement.tender.core.utils import optendersresource
-from openprocurement.tender.openua.views.award_complaint_document import (
-    TenderUaAwardComplaintDocumentResource
+# XXX Hack Negotiation procedures are not implemented yet
+# from openprocurement.tender.openua.views.award_complaint_document import (
+#     TenderUaAwardComplaintDocumentResource
+# )
+# from openprocurement.tender.openua.constants import STATUS4ROLE
+from openprocurement.tender.belowthreshold.views.award_complaint_document import (
+    TenderAwardComplaintDocumentResource as TenderUaAwardComplaintDocumentResource
 )
-from openprocurement.tender.openua.constants import STATUS4ROLE
+from openprocurement.tender.belowthreshold.constants import STATUS4ROLE
 
 
 @optendersresource(name='negotiation:Tender Award Complaint Documents',
