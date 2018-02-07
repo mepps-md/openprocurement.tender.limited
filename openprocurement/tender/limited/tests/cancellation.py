@@ -12,11 +12,6 @@ from openprocurement.tender.belowthreshold.tests.cancellation_blanks import (
     get_tender_cancellations,
 )
 
-from openprocurement.tender.openua.tests.cancellation_blanks import (
-    # TenderCancellationResourceTest
-    patch_tender_cancellation,
-)
-
 from openprocurement.tender.limited.tests.base import (
     BaseTenderContentWebTest,
     test_lots,
@@ -39,6 +34,7 @@ from openprocurement.tender.limited.tests.cancellation_blanks import (
     create_tender_cancellation,
     create_tender_cancellation_with_post,
     create_cancellation_on_lot,
+    patch_tender_cancellation,
 )
 
 

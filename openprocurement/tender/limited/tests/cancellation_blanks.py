@@ -163,6 +163,65 @@ def create_tender_cancellation_with_post(self):
     self.assertEqual(response.json['data']["status"], 'cancelled')
 
 
+def patch_tender_cancellation(self):
+    response = self.app.post_json('/tenders/{}/cancellations?acc_token={}'.format(
+        self.tender_id, self.tender_token), {'data': {'reason': 'cancellation reason'}})
+    self.assertEqual(response.status, '201 Created')
+    self.assertEqual(response.content_type, 'application/json')
+    cancellation = response.json['data']
+    old_date_status = response.json['data']['date']
+    response = self.app.patch_json('/tenders/{}/cancellations/{}?acc_token={}'.format(
+        self.tender_id, cancellation['id'], self.tender_token), {"data": {'reasonType': 'unsuccessful'}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['data']["reasonType"], "unsuccessful")
+
+    response = self.app.patch_json('/tenders/{}/cancellations/{}?acc_token={}'.format(
+        self.tender_id, cancellation['id'], self.tender_token), {"data": {"status": "active"}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['data']["status"], "active")
+    self.assertNotEqual(old_date_status, response.json['data']['date'])
+
+    response = self.app.get('/tenders/{}'.format(self.tender_id))
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['data']["status"], 'cancelled')
+
+    response = self.app.patch_json('/tenders/{}/cancellations/{}?acc_token={}'.format(
+        self.tender_id, cancellation['id'], self.tender_token), {"data": {"status": "pending"}}, status=403)
+    self.assertEqual(response.status, '403 Forbidden')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['errors'][0]["description"],
+                     "Can't update cancellation in current (cancelled) tender status")
+
+    response = self.app.patch_json('/tenders/{}/cancellations/some_id?acc_token={}'.format(
+        self.tender_id, self.tender_token), {"data": {"status": "active"}}, status=404)
+    self.assertEqual(response.status, '404 Not Found')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['status'], 'error')
+    self.assertEqual(response.json['errors'], [
+        {u'description': u'Not Found', u'location':
+            u'url', u'name': u'cancellation_id'}
+    ])
+
+    response = self.app.patch_json('/tenders/some_id/cancellations/some_id',
+        {"data": {"status": "active"}}, status=404)
+    self.assertEqual(response.status, '404 Not Found')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['status'], 'error')
+    self.assertEqual(response.json['errors'], [
+        {u'description': u'Not Found', u'location':
+            u'url', u'name': u'tender_id'}
+    ])
+
+    response = self.app.get('/tenders/{}/cancellations/{}'.format(self.tender_id, cancellation['id']))
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['data']["status"], "active")
+    self.assertEqual(response.json['data']["reason"], "cancellation reason")
+
+
 def create_cancellation_on_lot(self):
     """ Try create cancellation with cancellationOf = lot while tender hasn't lots """
     response = self.app.post_json('/tenders/{}/cancellations?acc_token={}'.format(self.tender_id,
