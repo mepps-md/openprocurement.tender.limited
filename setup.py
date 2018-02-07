@@ -19,11 +19,15 @@ docs_requires = requires + [
     'sphinxcontrib-httpdomain',
 ]
 
+negotiation_requires = requires + [
+    'openprocurement.tender.openua',  # TODO: rebase on mepps belowthreshold
+]
+
 entry_points = {
     'openprocurement.tender.core.plugins': [
         'reporting = openprocurement.tender.limited.includeme:includeme',
-        'negotiation = openprocurement.tender.limited.includeme:includeme_negotiation',
-        'negotiation.quick = openprocurement.tender.limited.includeme:includeme_negotiation_quick'
+        # 'negotiation = openprocurement.tender.limited.includeme:includeme_negotiation',
+        # 'negotiation.quick = openprocurement.tender.limited.includeme:includeme_negotiation_quick'
     ]
 }
 
@@ -52,6 +56,7 @@ setup(name='openprocurement.tender.limited',
       include_package_data=True,
       zip_safe=False,
       install_requires=requires,
-      extras_require={'test': test_requires, 'docs': docs_requires},
+      extras_require={'test': test_requires, 'docs': docs_requires,
+                      'negotiation': negotiation_requires},
       test_suite="openprocurement.tender.limited.tests.main.suite",
       entry_points=entry_points)
