@@ -18,13 +18,15 @@ from openprocurement.tender.limited.models import (
 
 
 def create_tender_accreditation(self):
-    for broker in ['broker1', 'broker3']:
+    # Moldova has only 1 level of accreditation
+    # for broker in ['broker1', 'broker3']:
+    for broker in ['broker1']:
         self.app.authorization = ('Basic', (broker, ''))
         response = self.app.post_json('/tenders', {"data": self.initial_data})
         self.assertEqual(response.status, '201 Created')
         self.assertEqual(response.content_type, 'application/json')
 
-    for broker in ['broker2', 'broker4']:
+    for broker in ['broker2', 'broker4', 'broker3']:
         self.app.authorization = ('Basic', (broker, ''))
         response = self.app.post_json('/tenders', {"data": self.initial_data}, status=403)
         self.assertEqual(response.status, '403 Forbidden')

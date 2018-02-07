@@ -241,7 +241,7 @@ class Tender(BaseTender):
     mode = StringType(choices=['test'])
     cancellations = ListType(ModelType(Cancellation), default=list())
 
-    create_accreditation = '13'
+    create_accreditation = 1
     edit_accreditation = 2
     procuring_entity_kinds = ['general', 'special', 'defense', 'other']
     block_complaint_status = OpenUATender.block_complaint_status
