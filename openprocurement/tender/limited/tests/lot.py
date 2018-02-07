@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import unittest
+
 from openprocurement.api.tests.base import snitch
 
 from openprocurement.tender.limited.tests.base import (
@@ -29,7 +31,10 @@ from openprocurement.tender.limited.tests.lot_blanks import (
     patch_lot_with_cancellation,
 )
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
 
+
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationResourceTest(BaseTenderContentWebTest):
     initial_status = 'active'
     initial_data = test_tender_negotiation_data
@@ -56,6 +61,7 @@ class TenderLotNegotiationResourceTest(BaseTenderContentWebTest):
     test_patch_lot_with_cancellation = snitch(patch_lot_with_cancellation)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationQuickResourceTest(TenderLotNegotiationResourceTest):
 
     initial_data = test_tender_negotiation_quick_data

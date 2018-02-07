@@ -69,6 +69,8 @@ from openprocurement.tender.limited.tests.award_blanks import (
     activate_contract_with_cancelled_award,
 )
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderAwardResourceTest(BaseTenderContentWebTest):
     initial_status = 'active'
@@ -93,6 +95,7 @@ class TenderAwardComplaintResourceTest(BaseTenderContentWebTest):
     test_create_tender_award_complaints = snitch(create_tender_award_complaints)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardResourceTest(TenderAwardResourceTest):
     initial_data = test_tender_negotiation_data
 
@@ -103,6 +106,7 @@ class TenderNegotiationAwardResourceTest(TenderAwardResourceTest):
     test_create_two_awards_on_one_lot = snitch(create_two_awards_on_one_lot)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLotAwardResourceTest(TenderAwardResourceTest):
     initial_data = test_tender_negotiation_data
     test_tender_negotiation_data_local = test_tender_negotiation_data
@@ -121,10 +125,12 @@ class TenderNegotiationLotAwardResourceTest(TenderAwardResourceTest):
     test_patch_award_on_cancel_lot = snitch(patch_award_on_cancel_lot)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardResourceTest(TenderNegotiationAwardResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data
 
@@ -153,6 +159,7 @@ class TenderNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     test_cancelled_award_with_complaint = snitch(cancelled_award_with_complaint)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationAwardComplaintResourceTest(TenderNegotiationAwardComplaintResourceTest):
 
     test_create_tender_award_complaints = snitch(create_tender_lot_award_complaints)
@@ -192,6 +199,7 @@ class TenderLotNegotiationAwardComplaintResourceTest(TenderNegotiationAwardCompl
     test_cancelled_award_with_complaint = snitch(cancelled_lot_award_with_complaint)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data_2items
 
@@ -251,10 +259,12 @@ class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     test_cancelled_unsuccessful_award_with_complaint = snitch(cancelled_unsuccessful_award_with_complaint)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationQuickAwardComplaintResourceTest(Tender2LotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data_2items
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_negotiation_data_2items
 
@@ -315,18 +325,22 @@ class Tender2LotNegotiationAwardComplaintResourceTest(BaseTenderContentWebTest):
     test_change_lotID_from_cancelled_award = snitch(change_lotID_from_cancelled_award)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class Tender2LotNegotiationQuickAwardComplaintResourceTest(Tender2LotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data_2items
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardComplaintResourceTest(TenderNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotNegotiationQuickAwardComplaintResourceTest(TenderLotNegotiationAwardComplaintResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationAwardComplaintDocumentResourceTest(BaseTenderContentWebTest, TenderAwardComplaintDocumentResourceTestMixin):
     initial_data = test_tender_negotiation_data
 
@@ -354,6 +368,7 @@ class TenderNegotiationAwardComplaintDocumentResourceTest(BaseTenderContentWebTe
     test_patch_tender_award_complaint_document = snitch(patch_tender_award_complaint_document)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickAwardComplaintDocumentResourceTest(TenderNegotiationAwardComplaintDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -378,14 +393,17 @@ class TenderAwardDocumentResourceTest(BaseTenderContentWebTest, TenderAwardDocum
     test_create_award_document_bot = lambda x: 1  # disable edr bot test for now
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderAwardNegotiationDocumentResourceTest(TenderAwardDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderAwardNegotiationQuickDocumentResourceTest(TenderAwardNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotAwardNegotiationDocumentResourceTest(TenderAwardNegotiationDocumentResourceTest):
 
     def setUp(self):
@@ -407,6 +425,7 @@ class TenderLotAwardNegotiationDocumentResourceTest(TenderAwardNegotiationDocume
         self.award_id = award['id']
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderLotAwardNegotiationQuickDocumentResourceTest(TenderLotAwardNegotiationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 

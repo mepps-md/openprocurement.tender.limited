@@ -54,6 +54,7 @@ from openprocurement.tender.limited.tests.tender_blanks import (
     create_tender_accreditation,
 )
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
 
 
 class AccreditationTenderTest(BaseTenderWebTest):
@@ -68,12 +69,14 @@ class TenderTest(BaseTenderWebTest):
     test_simple_add_tender = snitch(simple_add_tender)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationTest(BaseTenderWebTest):
     initial_data = test_tender_negotiation_data
 
     test_simple_add_tender = snitch(simple_add_tender_negotiation)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickTest(TenderNegotiationTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -100,6 +103,7 @@ class TenderResourceTest(BaseTenderWebTest):
     test_tender_funders = snitch(tender_funders)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationResourceTest(TenderResourceTest):
     initial_data = test_tender_negotiation_data
     test_lots_data = test_lots  # TODO: change attribute identifier
@@ -109,6 +113,7 @@ class TenderNegotiationResourceTest(TenderResourceTest):
     test_initial_lot_date = snitch(initial_lot_date)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickResourceTest(TenderNegotiationResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -121,12 +126,14 @@ class TenderProcessTest(BaseTenderWebTest):
     test_tender_cancellation = snitch(tender_cancellation)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationProcessTest(TenderProcessTest):
     initial_data = test_tender_negotiation_data
 
     test_tender_cause = snitch(tender_cause)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickProcessTest(TenderNegotiationProcessTest):
     initial_data = test_tender_negotiation_quick_data
 

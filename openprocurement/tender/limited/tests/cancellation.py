@@ -37,6 +37,8 @@ from openprocurement.tender.limited.tests.cancellation_blanks import (
     patch_tender_cancellation,
 )
 
+from openprocurement.tender.limited.tests.base import skipNegotiation
+
 
 class TenderCancellationResourceTest(BaseTenderContentWebTest):
     initial_data = test_tender_data
@@ -50,12 +52,14 @@ class TenderCancellationResourceTest(BaseTenderContentWebTest):
     test_create_cancellation_on_lot = snitch(create_cancellation_on_lot)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationCancellationResourceTest(TenderCancellationResourceTest):
     initial_data = test_tender_negotiation_data
 
     test_create_cancellation_on_lot = snitch(negotiation_create_cancellation_on_lot)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickCancellationResourceTest(TenderNegotiationCancellationResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
@@ -72,14 +76,17 @@ class TenderCancellationDocumentResourceTest(BaseTenderContentWebTest, TenderCan
         self.cancellation_id = cancellation['id']
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationCancellationDocumentResourceTest(TenderCancellationDocumentResourceTest):
     initial_data = test_tender_negotiation_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickCancellationDocumentResourceTest(TenderNegotiationCancellationDocumentResourceTest):
     initial_data = test_tender_negotiation_quick_data
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationLotsCancellationResourceTest(BaseTenderContentWebTest):
     initial_lots = 2 * test_lots
     initial_data = test_tender_negotiation_data
@@ -93,6 +100,7 @@ class TenderNegotiationLotsCancellationResourceTest(BaseTenderContentWebTest):
     test_cancellation_on_not_active_lot = snitch(cancellation_on_not_active_lot)
 
 
+@unittest.skipIf(skipNegotiation, "not Implemented")
 class TenderNegotiationQuickLotsCancellationResourceTest(TenderNegotiationLotsCancellationResourceTest):
     initial_data = test_tender_negotiation_quick_data
 

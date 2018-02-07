@@ -11,6 +11,8 @@ from openprocurement.tender.belowthreshold.tests.base import (
     BaseTenderWebTest as BaseBaseTenderWebTest
 )
 
+skipNegotiation = True
+
 now = datetime.now()
 test_tender_data = base_data.copy()
 del test_tender_data['enquiryPeriod']
