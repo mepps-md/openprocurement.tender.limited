@@ -3,7 +3,7 @@ from copy import deepcopy
 from uuid import uuid4
 
 from openprocurement.api.utils import get_now
-from openprocurement.api.constants import ROUTE_PREFIX, CPV_ITEMS_CLASS_FROM
+from openprocurement.api.constants import ROUTE_PREFIX
 
 from openprocurement.tender.belowthreshold.tests.base import test_organization
 
@@ -419,47 +419,6 @@ def create_tender_invalid(self):
                   response.json['errors'])
     self.assertIn({u'description': [u'This field is required.'], u'location': u'body', u'name': u'value'},
                   response.json['errors'])
-
-    data = self.initial_data["items"][0].pop("additionalClassifications")
-    if get_now() > CPV_ITEMS_CLASS_FROM:
-        cpv_code = self.initial_data["items"][0]['classification']['id']
-        self.initial_data["items"][0]['classification']['id'] = '99999999-9'
-    response = self.app.post_json(request_path, {'data': self.initial_data}, status=422)
-    self.initial_data["items"][0]["additionalClassifications"] = data
-    if get_now() > CPV_ITEMS_CLASS_FROM:
-        self.initial_data["items"][0]['classification']['id'] = cpv_code
-    self.assertEqual(response.status, '422 Unprocessable Entity')
-    self.assertEqual(response.content_type, 'application/json')
-    self.assertEqual(response.json['status'], 'error')
-    self.assertEqual(response.json['errors'], [
-        {u'description': [{u'additionalClassifications': [u'This field is required.']}], u'location': u'body',
-         u'name': u'items'}
-    ])
-
-    data = self.initial_data["items"][0]["additionalClassifications"][0]["scheme"]
-    self.initial_data["items"][0]["additionalClassifications"][0]["scheme"] = 'Не ДКПП'
-    if get_now() > CPV_ITEMS_CLASS_FROM:
-        cpv_code = self.initial_data["items"][0]['classification']['id']
-        self.initial_data["items"][0]['classification']['id'] = '99999999-9'
-    response = self.app.post_json(request_path, {'data': self.initial_data}, status=422)
-    self.initial_data["items"][0]["additionalClassifications"][0]["scheme"] = data
-    if get_now() > CPV_ITEMS_CLASS_FROM:
-        self.initial_data["items"][0]['classification']['id'] = cpv_code
-    self.assertEqual(response.status, '422 Unprocessable Entity')
-    self.assertEqual(response.content_type, 'application/json')
-    self.assertEqual(response.json['status'], 'error')
-    if get_now() > CPV_ITEMS_CLASS_FROM:
-        self.assertEqual(response.json['errors'], [
-            {u'description': [{u'additionalClassifications': [
-                u"One of additional classifications should be one of [ДК003, ДК015, ДК018, specialNorms]."]}],
-             u'location': u'body', u'name': u'items'}
-        ])
-    else:
-        self.assertEqual(response.json['errors'], [
-            {u'description': [{u'additionalClassifications': [
-                u"One of additional classifications should be one of [ДКПП, NONE, ДК003, ДК015, ДК018]."]}],
-             u'location': u'body', u'name': u'items'}
-        ])
 
     data = self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
     del self.initial_data["procuringEntity"]["contactPoint"]["telephone"]
