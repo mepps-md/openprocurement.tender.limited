@@ -446,16 +446,6 @@ def create_tender_invalid(self):
         {u'description': [u'CPV group of items be identical'], u'location': u'body', u'name': u'items'}
     ])
 
-    data = deepcopy(self.initial_data)
-    del data["items"][0]['deliveryDate']
-    response = self.app.post_json(request_path, {'data': data}, status=422)
-    self.assertEqual(response.status, '422 Unprocessable Entity')
-    self.assertEqual(response.content_type, 'application/json')
-    self.assertEqual(response.json['status'], 'error')
-    self.assertEqual(response.json['errors'], [
-        {u'description': [{u'deliveryDate': [u'This field is required.']}], u'location': u'body', u'name': u'items'}
-    ])
-
 
 def field_relatedLot(self):
     request_path = '/tenders'
