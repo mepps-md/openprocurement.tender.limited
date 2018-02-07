@@ -407,6 +407,18 @@ def create_tender_invalid(self):
             u'name': u'value'}
     ])
 
+
+    self.initial_data['value']['valueAddedTaxIncluded'] = True
+    response = self.app.post_json(request_path, {'data': self.initial_data}, status=422)
+    self.initial_data['value']['valueAddedTaxIncluded'] = False
+    self.assertEqual(response.status, '422 Unprocessable Entity')
+    self.assertEqual(response.content_type, 'application/json')
+    self.assertEqual(response.json['status'], 'error')
+    self.assertEqual(response.json['errors'], [
+        {u'description': [u'Currently, only procedures with VAT excluded are supported'], u'location': u'body', u'name': u'value'}
+    ])
+
+
     response = self.app.post_json(request_path, {'data': {'procurementMethodType': 'reporting',
                                                           'procurementMethod': 'invalid_value'}}, status=422)
     self.assertEqual(response.status, '422 Unprocessable Entity')

@@ -269,6 +269,10 @@ class Tender(BaseTender):
             (Allow, '{}_{}'.format(self.owner, self.owner_token), 'edit_complaint'),
         ]
 
+    def validate_value(self, data, value):
+        if value.valueAddedTaxIncluded is not False:
+            raise ValidationError(u"Currently, only procedures with VAT excluded are supported")
+
 ReportingTender = Tender
 Item = BaseItem
 
