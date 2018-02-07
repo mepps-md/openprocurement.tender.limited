@@ -244,7 +244,7 @@ class Tender(BaseTender):
     create_accreditation = 1
     edit_accreditation = 2
     procuring_entity_kinds = ['general', 'special', 'defense', 'other']
-    block_complaint_status = OpenUATender.block_complaint_status
+    block_complaint_status = []  # BBB No complaints in reporting
 
     __parent__ = None
 
@@ -353,6 +353,7 @@ class Tender(ReportingTender):
     edit_accreditation = 4
     procuring_entity_kinds = ['general', 'special', 'defense']
     lots = ListType(ModelType(Lot), default=list(), validators=[validate_lots_uniq])
+    block_complaint_status = OpenUATender.block_complaint_status
 
 NegotiationTender = Tender
 
