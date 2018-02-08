@@ -120,6 +120,8 @@ class Contract(BaseContract):
         role = 'edit'
         if request.authenticated_role == 'tender_owner':
             role = 'edit_contract'
+            if request.context.status == 'pending.signed':
+                role = 'edit_pending.signed'
         return role
 
 
