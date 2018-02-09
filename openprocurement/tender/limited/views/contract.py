@@ -8,7 +8,8 @@ from openprocurement.tender.core.utils import (
 from openprocurement.tender.core.validation import (
     validate_contract_data,
     validate_patch_contract_data,
-    validate_update_contract_value
+    validate_update_contract_value,
+    validate_contract_items_count_modification
 )
 from openprocurement.tender.belowthreshold.views.contract import (
     TenderAwardContractResource as BaseTenderAwardContractResource
@@ -16,9 +17,9 @@ from openprocurement.tender.belowthreshold.views.contract import (
 from openprocurement.tender.limited.validation import (
     validate_contract_update_in_cancelled,
     validate_contract_operation_not_in_active,
-    validate_contract_items_count_modification,
     validate_contract_with_cancellations_and_contract_signing
 )
+
 
 def check_tender_status(request):
     tender = request.validated['tender']

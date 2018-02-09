@@ -17,6 +17,9 @@ from openprocurement.tender.limited.tests.base import (
     test_tender_negotiation_data,
     test_tender_negotiation_quick_data
 )
+from openprocurement.tender.belowthreshold.tests.contract_blanks import (
+    patch_tender_contract_item
+)
 from openprocurement.tender.limited.tests.contract_blanks import (
     # TenderNegotiationQuickAccelerationTest
     create_tender_contract_negotiation_quick,
@@ -64,6 +67,7 @@ class TenderContractResourceTest(BaseTenderContentWebTest, TenderContractResourc
 
     test_create_tender_contract = snitch(create_tender_contract)
     test_patch_tender_contract = snitch(patch_tender_contract)
+    test_patch_tender_contract_item = snitch(patch_tender_contract_item)
     test_tender_contract_signature_date = snitch(tender_contract_signature_date)
     test_award_id_change_is_not_allowed = snitch(award_id_change_is_not_allowed)
 
