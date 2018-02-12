@@ -2,6 +2,7 @@
 from openprocurement.api.utils import (
     json_view, context_unpack, get_now, raise_operation_error
 )
+from openprocurement.tender.core.constants import STAND_STILL_PENDING_SIGNED
 from openprocurement.tender.core.utils import (
     apply_patch, save_tender, optendersresource
 )
@@ -93,11 +94,16 @@ class TenderAwardContractResource(BaseTenderAwardContractResource):
         """Update of contract
         """
         contract_status = self.request.context.status
+        last_status_change_date = self.request.context.date
         apply_patch(self.request, save=False, src=self.request.context.serialize())
-        self.request.context.date = get_now()
-        if contract_status != self.request.context.status and contract_status != 'pending' and self.request.context.status != 'active':
+        if contract_status != self.request.context.status and (
+                contract_status not in ['pending', 'pending.signed'] or self.request.context.status not in ['active', 'pending', 'pending.signed']):
             raise_operation_error(self.request, 'Can\'t update contract status')
-
+        if contract_status == 'pending.signed' and self.request.context.status == 'pending':
+            stand_still_end = last_status_change_date + STAND_STILL_PENDING_SIGNED
+            if get_now() < stand_still_end:
+                raise_operation_error(self.request, 'Can\'t return contract to pending status before ({})'.format(
+                    (stand_still_end).isoformat()))
         if self.request.context.status == 'active' and not self.request.context.dateSigned:
             self.request.context.dateSigned = get_now()
         check_tender_status(self.request)

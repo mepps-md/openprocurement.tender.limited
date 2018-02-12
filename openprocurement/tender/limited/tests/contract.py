@@ -36,6 +36,9 @@ from openprocurement.tender.limited.tests.contract_blanks import (
     patch_tender_contract,
     tender_contract_signature_date,
     award_id_change_is_not_allowed,
+    patch_tender_contract_pending_signed_status,
+    # TenderContractDocumentResourceTest
+    create_update_contract_document,
 )
 
 from openprocurement.tender.limited.tests.base import skipNegotiation
@@ -66,6 +69,7 @@ class TenderContractResourceTest(BaseTenderContentWebTest, TenderContractResourc
     test_patch_tender_contract = snitch(patch_tender_contract)
     test_tender_contract_signature_date = snitch(tender_contract_signature_date)
     test_award_id_change_is_not_allowed = snitch(award_id_change_is_not_allowed)
+    test_patch_tender_contract_pending_signed_status = snitch(patch_tender_contract_pending_signed_status)
 
 
 @unittest.skipIf(skipNegotiation, "not Implemented")
@@ -282,6 +286,8 @@ class TenderContractDocumentResourceTest(BaseTenderContentWebTest, TenderContrac
         self.create_award()
         response = self.app.get('/tenders/{}/contracts'.format(self.tender_id))
         self.contract_id = response.json['data'][0]['id']
+
+    test_create_update_contract_document = snitch(create_update_contract_document)
 
 
 @unittest.skipIf(skipNegotiation, "not Implemented")
