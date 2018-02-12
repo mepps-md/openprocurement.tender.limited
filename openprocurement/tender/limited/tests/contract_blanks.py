@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 import time
+from copy import deepcopy
 from iso8601 import parse_date
 from datetime import timedelta
 
@@ -103,6 +104,40 @@ def patch_tender_contract(self):
         {"data": {"value": {"amount": 238}}})
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.json['data']['value']['amount'], 238)
+
+    item = deepcopy(response.json['data']["items"][0])
+
+    # check contract.items modification (contract.item.unit.value.amount
+    # modification should be allowed)
+    response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
+        self.tender_id, self.contract_id, self.tender_token),
+        {"data": {"items": [{'unit': {'value': {'amount': 12}}}]}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.body, 'null')
+
+    response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
+        self.tender_id, self.contract_id, self.tender_token),
+        {"data": {"items": [{'unit': {'value': {'amount': 12, 'currency': "USD", 'valueAddedTaxIncluded': False}}}]}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.body, 'null')
+
+    # https://github.com/mepps-md/openprocurement.tender.limited/commit/eb06a90e3fd7a0c98a64b75e62a0d29591e1febb
+    response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
+        self.tender_id, self.contract_id, self.tender_token),
+        {'data': {'items': [{
+            'description': u"custom item descriptionX",
+            'quantity': 5,
+            'deliveryLocation': {'latitude': "12.123", 'longitude': "170.123"}
+        }]}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.body, 'null')
+
+    # try to add/delete contract item
+    response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
+        self.tender_id, self.contract_id, self.tender_token),
+        {'data': {'items': [{}, item]}})
+    self.assertEqual(response.status, '200 OK')
+    self.assertEqual(response.body, 'null')
 
     response = self.app.patch_json('/tenders/{}/contracts/{}?acc_token={}'.format(
         self.tender_id, self.contract_id, self.tender_token),
