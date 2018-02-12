@@ -11,6 +11,7 @@ from openprocurement.tender.belowthreshold.tests.tender_blanks import (
     dateModified_tender,
     tender_not_found,
     tender_funders,
+    tender_items,
     tender_item_location_validation,
 )
 
@@ -96,6 +97,7 @@ class TenderResourceTest(BaseTenderWebTest):
     test_create_tender_generated = snitch(create_tender_generated)
     test_create_tender_draft = snitch(create_tender_draft)
     test_create_tender = snitch(create_tender)
+    test_tender_items = snitch(tender_items)
     test_tender_item_location_validation = snitch(tender_item_location_validation)
     test_get_tender = snitch(get_tender)
     test_patch_tender = snitch(patch_tender)
