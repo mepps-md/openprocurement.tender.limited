@@ -1694,6 +1694,7 @@ def get_tender_award_complaint(self):
     self.assertEqual(response.status, '200 OK')
     self.assertEqual(response.content_type, 'application/json')
     self.assertEqual(response.json['data'], complaint)
+    self.assertNotIn('transfer_token', complaint)
 
     response = self.app.get('/tenders/{}/awards/{}/complaints/some_id'.format(self.tender_id, self.award_id),
                             status=404)
